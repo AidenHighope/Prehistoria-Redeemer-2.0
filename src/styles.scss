@@ -1,1 +1,51 @@
-/* You can add global styles to this file, and also import other style files */
+/* Importing Bootstrap SCSS file. */
+@import "bootstrap/scss/bootstrap";
+
+$mainbg: #ac8563;
+$boxbg: #b89779;
+$border: #3c3434;
+$button: #c1a58b;
+
+html body {
+  background-color: $mainbg;
+  font-family: "Comfortaa";
+}
+
+nav ul {
+  list-style: none;
+  display: block;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Neucha";
+}
+
+.flexy {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.Mybox {
+  background-color: $boxbg;
+  border: 2px solid $border;
+  border-radius: 10px;
+  padding: 1%;
+  margin: 1%;
+}
+
+nav {
+  background-color: $border;
+}
+
+.btn-secondary {
+  background-color: $button;
+  color: black;
+  border: 1px solid $border;
+}
+
+.btn-secondary:hover {
+  background-color: #937f6d;
+}

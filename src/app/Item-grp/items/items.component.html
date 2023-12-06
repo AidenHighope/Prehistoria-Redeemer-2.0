@@ -1,0 +1,158 @@
+<nav class="navbar sticky-top navbar-dark bg-dark">
+  <form class="form-inline">
+    <button
+      class="btn btn-dark"
+      type="button"
+      (click)="filterCategory('hunting')"
+    >
+      hunting
+    </button>
+    <button
+      class="btn btn-dark"
+      type="button"
+      (click)="filterCategory('fishing')"
+    >
+      fishing
+    </button>
+    <button
+      class="btn btn-dark"
+      type="button"
+      (click)="filterCategory('discovery')"
+    >
+      discovery
+    </button>
+    <button
+      class="btn btn-dark"
+      type="button"
+      (click)="filterCategory('foraging')"
+    >
+      foraging
+    </button>
+    <button class="btn btn-dark" type="button" (click)="filterCategory('telt')">
+      telt
+    </button>
+    <button class="btn btn-dark" type="button" (click)="filterCategory('tack')">
+      tack
+    </button>
+    <button
+      class="btn btn-dark"
+      type="button"
+      (click)="filterCategory('companions')"
+    >
+      companions
+    </button>
+    <button
+      class="btn btn-dark"
+      type="button"
+      (click)="filterCategory('cosmetic')"
+    >
+      cosmetic
+    </button>
+    <button
+      class="btn btn-dark"
+      type="button"
+      (click)="filterCategory('breeding')"
+    >
+      breeding
+    </button>
+    <button class="btn btn-dark" type="button" (click)="filterCategory('geno')">
+      geno
+    </button>
+    <button
+      class="btn btn-dark"
+      type="button"
+      (click)="filterCategory('reveal')"
+    >
+      reveal
+    </button>
+    <button
+      class="btn btn-dark"
+      type="button"
+      (click)="filterCategory('calendar')"
+    >
+      calendar
+    </button>
+    <button
+      class="btn btn-dark"
+      type="button"
+      (click)="filterCategory('event')"
+    >
+      event
+    </button>
+    <button
+      class="btn btn-dark"
+      type="button"
+      (click)="filterCategory('trait')"
+    >
+      trait
+    </button>
+    <button
+      class="btn btn-dark"
+      type="button"
+      (click)="filterCategory('currency')"
+    >
+      currency
+    </button>
+    <button class="btn btn-dark" type="button" (click)="filterCategory('misc')">
+      misc
+    </button>
+  </form>
+</nav>
+
+<section class="flexy">
+  <article class="Mybox">
+    <table>
+      <thead>
+        <tr>
+          <th>Items</th>
+          <th>Price</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of database">
+          <td>{{ item.name }}</td>
+          <td>({{ item.price }})</td>
+          <td>
+            <button class="btn btn-secondary btn-sm" (click)="addNewItem(item)">
+              Sell
+            </button>
+            <button
+              class="btn btn-secondary btn-sm"
+              (click)="stashNewItem(item)"
+            >
+              Stash
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </article>
+  <article class="Mybox">
+    <ul>
+      <li *ngFor="let item of currentRedeem">
+        <button class="btn btn-danger btn-sm" (click)="addQty(item)">+</button>
+        <button class="btn btn-danger btn-sm" (click)="minusQty(item)">
+          -
+        </button>
+        {{ item.qty }} {{ item.itemType.name }}
+        <span *ngIf="item.isStashed">(STASHED)</span>
+        <span *ngIf="!item.isStashed"
+          >({{ item.itemType.price * item.qty }})</span
+        >
+      </li>
+    </ul>
+    <button class="btn btn-danger" (click)="newComment()">New comment</button>
+  </article>
+  <article class="Mybox">
+    <ul>
+      <li *ngFor="let item of redeemedItems">
+        {{ item.qty }}x {{ item.itemType.name }}
+        <span *ngIf="item.isStashed">(STASHED)</span>
+        <span *ngIf="!item.isStashed"
+          >({{ item.itemType.price * item.qty }})</span
+        >
+      </li>
+    </ul>
+  </article>
+</section>
