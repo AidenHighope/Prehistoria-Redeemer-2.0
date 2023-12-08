@@ -13,7 +13,8 @@ export class ItemsComponent {
     this.database = itemService.getItems();
     this.Redeem = itemService.getRedeems();
   }
-
+  //TODO add beads (for quest or traits)
+  //TODO add a way to add custom reward (for non regular items given by monthly bonus or something)
   //Variables
   database: gameitems[];
   Redeem: gameitems[];
