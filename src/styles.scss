@@ -5,6 +5,9 @@ $mainbg: #ac8563;
 $boxbg: #b89779;
 $border: #3c3434;
 $button: #c1a58b;
+$danger: #764836;
+$dangerHover: #5d2d1a;
+$dangerDisabled: rgb(128, 115, 110);
 
 html body {
   background-color: $mainbg;
@@ -16,6 +19,10 @@ nav ul {
   display: block;
 }
 
+li {
+  list-style-type: none;
+}
+
 h1,
 h2,
 h3 {
@@ -25,13 +32,15 @@ h3 {
 .flexy {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  justify-content: space-around;
 }
 
 .Mybox {
   background-color: $boxbg;
   border: 2px solid $border;
   border-radius: 10px;
+  height: fit-content;
+  width: 100%;
   padding: 1%;
   margin: 1%;
 }
@@ -48,4 +57,18 @@ nav {
 
 .btn-secondary:hover {
   background-color: #937f6d;
+}
+
+.btn-danger {
+  margin: 0.5%;
+  background-color: $danger;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: $dangerHover;
+}
+
+.btn-danger:disabled {
+  background-color: $dangerDisabled;
 }

@@ -98,6 +98,15 @@
     </button>
   </form>
 </nav>
+<div>
+  <input
+    type="text"
+    placeholder="Search"
+    [(ngModel)]="input"
+    (keyup.enter)="searchItem(input)"
+  />
+  <button (click)="searchItem(input)">Search</button>
+</div>
 
 <section class="flexy">
   <article class="Mybox">
@@ -111,7 +120,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let item of database">
-          <td>{{ item.name }}</td>
+          <td>{{ item.name | titlecase }}</td>
           <td>({{ item.price }})</td>
           <td>
             <button
@@ -134,21 +143,23 @@
     </table>
   </article>
   <article class="Mybox">
-    <ul>
+    <div class="btn-container">
       <button
-        class="btn btn-danger"
+        class="btn btn-danger btn"
         (click)="newComment()"
         [disabled]="Comment.length >= 5 || buttonDisabled"
       >
-        New comment
+        New
       </button>
-      <button class="btn btn-danger" (click)="clearAll()">Clear All</button>
+      <button class="btn btn-danger btn" (click)="clearAll()">Reset</button>
+    </div>
+    <ul>
       <li *ngFor="let item of currentRedeem">
         <button class="btn btn-danger btn-sm" (click)="addQty(item)">+</button>
         <button class="btn btn-danger btn-sm" (click)="minusQty(item)">
           -
         </button>
-        {{ item.qty }} {{ item.itemType.name }}
+        {{ item.qty }} {{ item.itemType.name | titlecase }}
         <span *ngIf="item.isStashed">(STASHED)</span>
         <span *ngIf="!item.isStashed"
           >({{ item.itemType.price * item.qty }})</span
@@ -163,7 +174,7 @@
       <p><b>Items :</b></p>
       <ul>
         <li *ngFor="let lootItem of item.loot">
-          x{{ lootItem.qty }} {{ lootItem.itemType.name }}
+          x{{ lootItem.qty }} {{ lootItem.itemType.name | titlecase }}
           <span *ngIf="lootItem.isStashed">(STASHED)</span>
           <span *ngIf="!lootItem.isStashed"
             >({{ lootItem.itemType.price * lootItem.qty }})</span
@@ -179,7 +190,7 @@
     <ul>
       <ng-container *ngFor="let item of processedItems()">
         <li *ngIf="item.isStashed">
-          <span>{{ item.qty }} x {{ item.itemType.name }}</span>
+          <span>{{ item.qty }} x {{ item.itemType.name | titlecase }}</span>
         </li>
       </ng-container>
     </ul>

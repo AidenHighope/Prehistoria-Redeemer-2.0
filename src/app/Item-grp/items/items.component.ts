@@ -22,9 +22,21 @@ export class ItemsComponent {
   oneRedeem: redeemItem[] = [];
   Comment: admincomment[] = [];
   buttonDisabled: boolean = false;
+  input: string = '';
+
+  //#region filter and search
+
   filterCategory(name: string): void {
     this.database = this.itemService.getByCategory(name);
   }
+
+  searchItem(name: string): void {
+    this.database = this.itemService.getOne(name);
+    this.input = '';
+  }
+
+  //#endregion
+
   //#region items handling
   addOrStash(item: gameitems, bool: string) {
     this.itemService.redeemOne(item);
@@ -134,7 +146,7 @@ export class ItemsComponent {
         });
       }
     });
-
+    groupedItems.sort((a, b) => a.itemType.name.localeCompare(b.itemType.name));
     return groupedItems;
   }
   //#endregion

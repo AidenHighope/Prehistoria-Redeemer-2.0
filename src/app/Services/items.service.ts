@@ -60,7 +60,7 @@ export class ItemsService {
     { name: 'chamomile', category: 'foraging', price: 80 },
     { name: 'marigold', category: 'foraging', price: 100 },
     { name: 'berries', category: 'foraging', price: 200 },
-    { name: 'berries', category: 'foraging', price: 230 },
+    { name: 'apple', category: 'foraging', price: 230 },
     { name: 'mint', category: 'foraging', price: 260 },
     { name: 'aloe vera', category: 'foraging', price: 300 },
     { name: 'catnip', category: 'foraging', price: 400 },
@@ -68,7 +68,6 @@ export class ItemsService {
     { name: 'hawthorn', category: 'foraging', price: 500 },
     { name: 'strawberries', category: 'foraging', price: 700 },
     { name: 'cherries', category: 'foraging', price: 800 },
-    { name: 'ochre', category: 'foraging', price: 20 },
     { name: 'titanoboa scales', category: 'telt', price: 220 },
     { name: 'passion fruit', category: 'telt', price: 240 },
     { name: 'vanilla', category: 'telt', price: 260 },
@@ -318,7 +317,6 @@ export class ItemsService {
     { name: 'chocolate eggs', category: 'event', price: 900 },
     { name: 'golden fox bell', category: 'event', price: 1500 },
     { name: 'carrot cake', category: 'event', price: 1500 },
-    { name: 'stardust', category: 'reveal', price: 100 },
     { name: 'wiggling burlap sack', category: 'Reveal', price: 10 },
     { name: 'chewed up hunters pack', category: 'reveal', price: 10 },
     { name: 'clawed medicinal bag', category: 'reveal', price: 10 },
@@ -439,6 +437,22 @@ export class ItemsService {
 
   getByCategory(category: string): gameitems[] {
     return this._database.filter((items) => items.category === category);
+  }
+
+  getActivities(): gameitems[] {
+    return this._database.filter(
+      (item) =>
+        item.category === 'hunting' ||
+        'fishing' ||
+        'foraging' ||
+        'discovery' ||
+        'telt'
+    );
+  }
+
+  getOne(name: string): gameitems[] {
+    name.trim().toLowerCase();
+    return this._database.filter((items) => items.name.toLowerCase() === name);
   }
 
   redeemOne(item: gameitems): void {
