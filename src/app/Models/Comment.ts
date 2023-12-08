@@ -1,6 +1,6 @@
-import { gameitems } from './Game-item';
+import { gameitems, redeemItem } from './Game-item';
 
 export interface admincomment {
-  loot: gameitems[];
-  subtotal: number;
+  loot: redeemItem[];
+  subtotal?: number;
 }

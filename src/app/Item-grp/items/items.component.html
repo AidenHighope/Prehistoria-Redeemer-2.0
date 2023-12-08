@@ -114,12 +114,17 @@
           <td>{{ item.name }}</td>
           <td>({{ item.price }})</td>
           <td>
-            <button class="btn btn-secondary btn-sm" (click)="addNewItem(item)">
+            <button
+              class="btn btn-secondary btn-sm"
+              (click)="addOrStash(item, 'false')"
+              [disabled]="Comment.length >= 5"
+            >
               Sell
             </button>
             <button
               class="btn btn-secondary btn-sm"
-              (click)="stashNewItem(item)"
+              (click)="addOrStash(item, 'true')"
+              [disabled]="Comment.length >= 5"
             >
               Stash
             </button>
@@ -130,6 +135,14 @@
   </article>
   <article class="Mybox">
     <ul>
+      <button
+        class="btn btn-danger"
+        (click)="newComment()"
+        [disabled]="Comment.length >= 5 || buttonDisabled"
+      >
+        New comment
+      </button>
+      <button class="btn btn-danger" (click)="clearAll()">Clear All</button>
       <li *ngFor="let item of currentRedeem">
         <button class="btn btn-danger btn-sm" (click)="addQty(item)">+</button>
         <button class="btn btn-danger btn-sm" (click)="minusQty(item)">
@@ -142,17 +155,33 @@
         >
       </li>
     </ul>
-    <button class="btn btn-danger" (click)="newComment()">New comment</button>
   </article>
   <article class="Mybox">
+    <div *ngFor="let item of Comment; let i = index">
+      <br />
+      <p><b>Admin comment :</b></p>
+      <p><b>Items :</b></p>
+      <ul>
+        <li *ngFor="let lootItem of item.loot">
+          x{{ lootItem.qty }} {{ lootItem.itemType.name }}
+          <span *ngIf="lootItem.isStashed">(STASHED)</span>
+          <span *ngIf="!lootItem.isStashed"
+            >({{ lootItem.itemType.price * lootItem.qty }})</span
+          >
+        </li>
+      </ul>
+
+      <p><i>Subtotal </i> : {{ item.subtotal }} beads</p>
+    </div>
+    <p>---</p>
+    <p><b>Total beads :</b> {{ TotalBeads() }} beads</p>
+    <p><b>Total stashed items :</b></p>
     <ul>
-      <li *ngFor="let item of redeemedItems">
-        {{ item.qty }}x {{ item.itemType.name }}
-        <span *ngIf="item.isStashed">(STASHED)</span>
-        <span *ngIf="!item.isStashed"
-          >({{ item.itemType.price * item.qty }})</span
-        >
-      </li>
+      <ng-container *ngFor="let item of processedItems()">
+        <li *ngIf="item.isStashed">
+          <span>{{ item.qty }} x {{ item.itemType.name }}</span>
+        </li>
+      </ng-container>
     </ul>
   </article>
 </section>
