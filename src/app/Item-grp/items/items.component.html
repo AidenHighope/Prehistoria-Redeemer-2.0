@@ -236,7 +236,9 @@
         <li *ngIf="item.bonusBeads">{{ item.bonusBeads }} beads</li>
       </ul>
 
-      <p><i>Subtotal </i> : {{ item.subtotal | number : "1.0-0" }} beads</p>
+      <p *ngIf="item.subtotal">
+        <i>Subtotal </i> : {{ item.subtotal | number : "1.0-0" }} beads
+      </p>
     </div>
     <p>---</p>
     <p><b>Total beads :</b> {{ TotalBeads() | number : "1.0-0" }} beads</p>
