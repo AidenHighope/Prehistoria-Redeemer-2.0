@@ -23,7 +23,7 @@ export class ItemsComponent {
   Comment: admincomment[] = [];
   buttonDisabled: boolean = false;
   input: string = '';
-  url: string = '';
+  url: string = '[link]';
   extrabeads: string = '0';
   usesSilverTongue: boolean = false;
 
@@ -110,7 +110,7 @@ export class ItemsComponent {
     }
     this.redeemedItems.push(...this.oneRedeem);
     this.clearOne(this.currentRedeem);
-    this.url = '';
+    this.url = '[link]';
     this.extrabeads = '0';
     this.disableOnClick();
   }
