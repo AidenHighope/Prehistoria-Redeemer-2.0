@@ -13,7 +13,6 @@ export class ItemsComponent {
     this.database = itemService.getItems();
     this.Redeem = itemService.getRedeems();
   }
-  //TODO add beads (for quest or traits)
   //TODO add a way to add custom reward (for non regular items given by monthly bonus or something)
   //Variables
   database: gameitems[];
@@ -24,6 +23,9 @@ export class ItemsComponent {
   Comment: admincomment[] = [];
   buttonDisabled: boolean = false;
   input: string = '';
+  url: string = '';
+  extrabeads: string = '0';
+  usesSilverTongue: boolean = false;
 
   //#region filter and search
 
@@ -47,6 +49,7 @@ export class ItemsComponent {
     } else {
       lePush = { qty: 1, itemType: item, isStashed: false };
     }
+
     let existingItem = this.currentRedeem.find((a) => {
       return item.name === a.itemType.name && lePush.isStashed === a.isStashed;
     });
@@ -68,27 +71,47 @@ export class ItemsComponent {
       this.currentRedeem.splice(index, 1);
     }
   }
+
+  toggleSilverTongue(): void {
+    this.usesSilverTongue = !this.usesSilverTongue;
+  }
+  mapSilverTongue(price: number): number {
+    return Math.floor(price * 1.1);
+  }
   //#endregion
 
   //#region new comment
+
   newComment(): void {
     this.oneRedeem = [...this.currentRedeem];
 
     let sum = 0;
     this.currentRedeem.forEach((beads) => {
+      let price = beads.itemType.price;
+      if (this.usesSilverTongue) {
+        price = price * 1.1;
+      }
       if (!beads.isStashed) {
-        sum += beads.itemType.price * beads.qty;
+        sum += price * beads.qty;
       } else {
         sum += 0;
       }
     });
-
-    let commentContent = { loot: this.oneRedeem, subtotal: sum };
+    sum += parseInt(this.extrabeads);
+    let commentContent = {
+      loot: this.oneRedeem,
+      subtotal: sum,
+      url: this.url,
+      bonusBeads: parseInt(this.extrabeads),
+      silverTongue: this.usesSilverTongue,
+    };
     if (this.currentRedeem.length > 0) {
       this.Comment.push(commentContent);
     }
     this.redeemedItems.push(...this.oneRedeem);
     this.clearOne(this.currentRedeem);
+    this.url = '';
+    this.extrabeads = '0';
     this.disableOnClick();
   }
 

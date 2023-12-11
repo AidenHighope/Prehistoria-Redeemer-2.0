@@ -99,15 +99,28 @@
   </form>
 </nav>
 
-<div>
+<article class="search-bar">
   <input
     type="text"
     placeholder="Search"
     [(ngModel)]="input"
     (keyup.enter)="searchItem(input)"
   />
-  <button (click)="searchItem(input)">Search</button>
-</div>
+  <button class="btn btn-danger" (click)="searchItem(input)">Search</button>
+</article>
+
+<section class="flexy">
+  <article class="Mybox text-center">
+    <p>
+      Disclaimer: This is a non-official project; it may contain mistakes or
+      bugs.
+      <br />
+      Please note that DeviantArt can sometimes mislink the admin comment. I
+      recommend manually inserting the URL into a '[click here]' placeholder
+      text.
+    </p>
+  </article>
+</section>
 
 <section class="flexy">
   <article class="Mybox">
@@ -144,17 +157,50 @@
     </table>
   </article>
   <article class="Mybox">
+    <div>
+      <span class="form-check form-switch form-switch-lg">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="flexSwitchCheckDefault"
+          (click)="toggleSilverTongue()"
+        />
+        <label class="form-check-label" for="flexSwitchCheckDefault"
+          >silver tongue?</label
+        >
+      </span>
+      <input
+        type="text"
+        placeholder="admin comment"
+        [(ngModel)]="url"
+        class="comment-input"
+      />
+    </div>
+    <div>
+      <input
+        id="extra-beads"
+        type="text"
+        placeholder="extra beads?"
+        [(ngModel)]="extrabeads"
+        pattern="[0-9]*"
+        inputmode="numeric"
+        digitOnly
+        class="comment-input"
+      />
+      <label for="extra-beads">insert extra beads here</label>
+    </div>
     <div class="btn-container">
       <button
         class="btn btn-danger btn"
         (click)="newComment()"
         [disabled]="Comment.length >= 5 || buttonDisabled"
       >
-        New
+        submit
       </button>
-      <button class="btn btn-danger btn" (click)="clearAll()">Reset</button>
+      <button class="btn btn-danger btn" (click)="clearAll()">clear all</button>
     </div>
     <ul>
+      <hr />
       <li *ngFor="let item of currentRedeem">
         <button class="btn btn-danger btn-sm" (click)="addQty(item)">+</button>
         <button class="btn btn-danger btn-sm" (click)="minusQty(item)">
@@ -171,22 +217,29 @@
   <article class="Mybox">
     <div *ngFor="let item of Comment; let i = index">
       <br />
-      <p><b>Admin comment :</b></p>
+      <p><b>Admin comment :</b> {{ item.url }}</p>
       <p><b>Items :</b></p>
+      <p *ngIf="item.silverTongue"><i>has silver tongue</i></p>
       <ul>
         <li *ngFor="let lootItem of item.loot">
           x{{ lootItem.qty }} {{ lootItem.itemType.name | titlecase }}
           <span *ngIf="lootItem.isStashed">(STASHED)</span>
-          <span *ngIf="!lootItem.isStashed"
+          <span *ngIf="!lootItem.isStashed && !item.silverTongue"
             >({{ lootItem.itemType.price * lootItem.qty }})</span
           >
+          <span *ngIf="!lootItem.isStashed && item.silverTongue"
+            >({{
+              mapSilverTongue(lootItem.itemType.price) * lootItem.qty
+            }})</span
+          >
         </li>
+        <li *ngIf="item.bonusBeads">{{ item.bonusBeads }} beads</li>
       </ul>
 
-      <p><i>Subtotal </i> : {{ item.subtotal }} beads</p>
+      <p><i>Subtotal </i> : {{ item.subtotal | number : "1.0-0" }} beads</p>
     </div>
     <p>---</p>
-    <p><b>Total beads :</b> {{ TotalBeads() }} beads</p>
+    <p><b>Total beads :</b> {{ TotalBeads() | number : "1.0-0" }} beads</p>
     <p><b>Total stashed items :</b></p>
     <ul>
       <ng-container *ngFor="let item of processedItems()">
