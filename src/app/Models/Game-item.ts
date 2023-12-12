@@ -9,3 +9,17 @@ export interface redeemItem {
   itemType: gameitems;
   isStashed: boolean;
 }
+
+export interface tack {
+  name: string;
+  type: string;
+  activity: string;
+}
+export interface CategoryOrder {
+  trials: number;
+  special_trait: number;
+  primal_trait: number;
+  trait: number;
+  companions: number;
+  tack: number;
+}
