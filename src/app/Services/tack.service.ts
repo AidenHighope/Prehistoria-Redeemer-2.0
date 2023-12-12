@@ -8,221 +8,101 @@ export class TackService {
   constructor() {}
   //#region fakedb
   private _tackdb: tack[] = [
-    { name: 'Tawny Hyaenodon', type: 'companions', activity: 'hunting' },
-    { name: 'spotted Hyaenodon', type: 'companions', activity: 'hunting' },
-    { name: 'striped Hyaenodon', type: 'companions', activity: 'hunting' },
-    { name: 'bicolor Hyaenodon', type: 'companions', activity: 'hunting' },
-    { name: 'tawny Thylacine', type: 'companions', activity: 'fishing' },
-    { name: 'golden Thylacine', type: 'companions', activity: 'fishing' },
-    { name: 'pied Thylacine', type: 'companions', activity: 'fishing' },
-    { name: 'brown Jerboa', type: 'companions', activity: 'discovery' },
-    { name: 'black Jerboa', type: 'companions', activity: 'discovery' },
-    { name: 'pied Jerboa', type: 'companions', activity: 'discovery' },
-    { name: 'tawny Eucladoceros', type: 'companions', activity: 'foraging' },
-    { name: 'spotted Eucladoceros', type: 'companions', activity: 'foraging' },
-    { name: 'cream Eucladoceros', type: 'companions', activity: 'foraging' },
-    { name: 'Red Warrah', type: 'companions', activity: 'boss' },
-    { name: 'Black Warrah', type: 'companions', activity: 'boss' },
-    { name: 'Striped Warrah', type: 'companions', activity: 'boss' },
-    { name: 'tawny Cave Lion Cub', type: 'companions', activity: 'hunting' },
-    { name: 'spotted Cave Lion Cub', type: 'companions', activity: 'hunting' },
+    { name: 'Hyaenodon', type: 'companions', activity: 'hunting' },
+    { name: 'Thylacine', type: 'companions', activity: 'fishing' },
+    { name: 'Jerboa', type: 'companions', activity: 'discovery' },
+    { name: 'Eucladoceros', type: 'companions', activity: 'foraging' },
+    { name: 'Warrah', type: 'companions', activity: 'boss' },
+    { name: 'Cave Lion Cub', type: 'companions', activity: 'hunting' },
+    { name: 'Megalania', type: 'companions', activity: 'hunting' },
+    { name: 'Daeodon', type: 'companions', activity: 'hunting' },
+    { name: 'Gorgonops', type: 'companions', activity: 'hunting' },
+
+    { name: 'Trilobite (normal)', type: 'companions', activity: 'fishing' },
+
     {
-      name: 'Melanistic Cave Lion Cub',
-      type: 'companions',
-      activity: 'hunting',
-    },
-    { name: 'ivory Megalania', type: 'companions', activity: 'hunting' },
-    { name: 'nightstalker Megalania', type: 'companions', activity: 'hunting' },
-    { name: 'snowblind Daeodon', type: 'companions', activity: 'hunting' },
-    { name: 'silvermane Daeodon', type: 'companions', activity: 'hunting' },
-    { name: 'silvermane Daeodon', type: 'companions', activity: 'any' },
-    { name: 'stripehide Daeodon', type: 'companions', activity: 'hunting' },
-    { name: 'spotted Gorgonops', type: 'companions', activity: 'hunting' },
-    { name: 'red sable Gorgonops', type: 'companions', activity: 'hunting' },
-    { name: 'melanistic Gorgonops', type: 'companions', activity: 'hunting' },
-    { name: 'brown Trilobite', type: 'companions', activity: 'fishing' },
-    { name: 'blue grey Trilobite', type: 'companions', activity: 'fishing' },
-    {
-      name: 'great white Baby Thalattoarchon',
+      name: 'Baby Thalattoarchon',
       type: 'companions',
       activity: 'fishing',
     },
+
+    { name: 'Gomphotaria', type: 'companions', activity: 'fishing' },
+
+    { name: 'Coelacanth (normal)', type: 'companions', activity: 'fishing' },
+
+    { name: 'Titanoboa', type: 'companions', activity: 'discovery' },
+
     {
-      name: 'coral reef Baby Thalattoarchon',
-      type: 'companions',
-      activity: 'fishing',
-    },
-    {
-      name: 'erythristic Baby Thalattoarchon',
-      type: 'companions',
-      activity: 'fishing',
-    },
-    { name: 'liver Gomphotaria', type: 'companions', activity: 'fishing' },
-    {
-      name: 'raindrop glacier Gomphotaria',
-      type: 'companions',
-      activity: 'fishing',
-    },
-    {
-      name: 'shadow vitiligo Gomphotaria',
-      type: 'companions',
-      activity: 'fishing',
-    },
-    { name: 'blue Coelacanth', type: 'companions', activity: 'fishing' },
-    { name: 'earth Coelacanth', type: 'companions', activity: 'fishing' },
-    { name: 'white Coelacanth', type: 'companions', activity: 'fishing' },
-    { name: 'stonejaw Titanoboa', type: 'companions', activity: 'discovery' },
-    { name: 'dunestrike Titanoboa', type: 'companions', activity: 'discovery' },
-    {
-      name: 'albino diamond Titanoboa',
+      name: 'Cistecephalus',
       type: 'companions',
       activity: 'discovery',
     },
+
+    { name: 'Muskox Calf', type: 'companions', activity: 'discovery' },
+
+    { name: 'Pigeon', type: 'companions', activity: 'discovery' },
+
     {
-      name: 'warm clay Cistecephalus',
-      type: 'companions',
-      activity: 'discovery',
-    },
-    {
-      name: 'sunrise Cistecephalus',
-      type: 'companions',
-      activity: 'discovery',
-    },
-    {
-      name: 'bicolor Cistecephalus',
-      type: 'companions',
-      activity: 'discovery',
-    },
-    { name: 'tundra Muskox Calf', type: 'companions', activity: 'discovery' },
-    {
-      name: 'snowstorm Muskox Calf',
-      type: 'companions',
-      activity: 'discovery',
-    },
-    {
-      name: 'cloudhorn Muskox Calf',
-      type: 'companions',
-      activity: 'discovery',
-    },
-    { name: 'common grey Pigeon', type: 'companions', activity: 'discovery' },
-    { name: 'pied Pigeon', type: 'companions', activity: 'discovery' },
-    {
-      name: 'barred oriental Pigeon',
-      type: 'companions',
-      activity: 'discovery',
-    },
-    {
-      name: 'sunrunner Hyracotherium',
+      name: 'Hyracotherium',
       type: 'companions',
       activity: 'foraging',
     },
+
+    { name: 'Saber Squirrel', type: 'companions', activity: 'foraging' },
+
     {
-      name: 'twilight Hyracotherium',
+      name: 'Baby Metridiochoerus',
       type: 'companions',
       activity: 'foraging',
     },
-    { name: 'Koi Hyracotherium', type: 'companions', activity: 'foraging' },
-    { name: 'gray Saber Squirrel', type: 'companions', activity: 'foraging' },
+
     {
-      name: 'darkwood Saber Squirrel',
+      name: 'Chalicotherium',
       type: 'companions',
       activity: 'foraging',
     },
-    {
-      name: 'fire melanistic Saber Squirrel',
-      type: 'companions',
-      activity: 'foraging',
-    },
-    {
-      name: 'muddy Baby Metridiochoerus',
-      type: 'companions',
-      activity: 'foraging',
-    },
-    {
-      name: 'pied Baby Metridiochoerus',
-      type: 'companions',
-      activity: 'foraging',
-    },
-    {
-      name: 'darkwood Baby Metridiochoerus',
-      type: 'companions',
-      activity: 'foraging',
-    },
-    {
-      name: 'oakfist Chalicotherium',
-      type: 'companions',
-      activity: 'foraging',
-    },
-    {
-      name: 'dustback Chalicotherium',
-      type: 'companions',
-      activity: 'foraging',
-    },
-    {
-      name: 'marbleside Chalicotherium',
-      type: 'companions',
-      activity: 'foraging',
-    },
-    { name: 'Pink Dodo', type: 'companions', activity: 'any' },
-    { name: 'Blue Dodo', type: 'companions', activity: 'any' },
-    { name: 'Albino Dodo', type: 'companions', activity: 'any' },
-    { name: 'Brown Wooly Rhino Calf', type: 'companions', activity: 'boss' },
-    { name: 'White Wooly Rhino Calf', type: 'companions', activity: 'boss' },
-    { name: 'Bicolor Wooly Rhino Calf', type: 'companions', activity: 'boss' },
-    { name: 'Black Terror Bird Chick', type: 'companions', activity: 'boss' },
-    { name: 'Spotted Terror Bird Chick', type: 'companions', activity: 'boss' },
-    { name: 'Pink Terror Bird Chick', type: 'companions', activity: 'boss' },
-    { name: 'Spotted Megaloceros', type: 'companions', activity: 'any' },
-    { name: 'Earthen Megaloceros', type: 'companions', activity: 'any' },
-    { name: 'Cream Megaloceros', type: 'companions', activity: 'any' },
-    { name: 'Brown Wolverine', type: 'companions', activity: 'any' },
-    { name: 'Blone Striped Wolverine', type: 'companions', activity: 'any' },
-    { name: 'Snowstalker Wolverine', type: 'companions', activity: 'any' },
+
+    { name: 'Dodo', type: 'companions', activity: 'any' },
+
+    { name: 'Wooly Rhino Calf', type: 'companions', activity: 'boss' },
+
+    { name: 'Terror Bird Chick', type: 'companions', activity: 'boss' },
+
+    { name: 'Megaloceros', type: 'companions', activity: 'any' },
+
+    { name: 'Wolverine', type: 'companions', activity: 'any' },
+
     { name: 'Pygmy Onyc', type: 'companions', activity: 'any' },
-    { name: 'Albino Pygmy Onyc', type: 'companions', activity: 'any' },
-    { name: 'Badger Pygmy Onyc', type: 'companions', activity: 'any' },
-    { name: 'Polar Cave Bear Cub', type: 'companions', activity: 'any' },
-    { name: 'Brown Cave Bear Cub', type: 'companions', activity: 'any' },
-    { name: 'Glacier Cave Bear Cub', type: 'companions', activity: 'any' },
-    { name: 'Earthen Striped Chriacus', type: 'companions', activity: 'any' },
-    { name: 'Golden Chriacus', type: 'companions', activity: 'any' },
-    { name: 'Moonblessed Chriacus', type: 'companions', activity: 'any' },
+
+    { name: 'Cave Bear Cub', type: 'companions', activity: 'any' },
+
+    { name: 'Chriacus', type: 'companions', activity: 'any' },
+
     { name: 'Huxli', type: 'companions', activity: 'any' },
     { name: 'Luxili', type: 'companions', activity: 'any' },
-    { name: 'Jungle Jaguar Cub', type: 'companions', activity: 'telt' },
-    { name: 'Golden Jaguar Cub', type: 'companions', activity: 'telt' },
-    { name: 'Black Jaguar Cub', type: 'companions', activity: 'telt' },
-    { name: 'Ginger Jaguar Cub', type: 'companions', activity: 'telt' },
-    { name: 'Calico Jaguar Cub', type: 'companions', activity: 'telt' },
-    { name: 'Pied Jaguar Cub', type: 'companions', activity: 'telt' },
-    { name: 'fawn Tapir', type: 'companions', activity: 'telt' },
-    { name: 'banded Tapir', type: 'companions', activity: 'telt' },
-    { name: 'striped Tapir', type: 'companions', activity: 'telt' },
-    { name: 'brown Josephoartigasia', type: 'companions', activity: 'telt' },
-    { name: 'cream Josephoartigasia', type: 'companions', activity: 'telt' },
-    { name: 'bicolor Josephoartigasia', type: 'companions', activity: 'telt' },
-    { name: 'swamp Glyptodon', type: 'companions', activity: 'telt' },
-    { name: 'mud Glyptodon', type: 'companions', activity: 'telt' },
-    { name: 'golden Glyptodon', type: 'companions', activity: 'telt' },
-    { name: 'sand Macrauchenia', type: 'companions', activity: 'telt' },
-    { name: 'savannah Macrauchenia', type: 'companions', activity: 'telt' },
-    { name: 'moonblessed Macrauchenia', type: 'companions', activity: 'telt' },
+    { name: 'Jaguar Cub', type: 'companions', activity: 'telt' },
+    { name: 'Tapir', type: 'companions', activity: 'telt' },
+
+    { name: 'Josephoartigasia', type: 'companions', activity: 'telt' },
+
+    { name: 'Glyptodon', type: 'companions', activity: 'telt' },
+
+    { name: 'Macrauchenia', type: 'companions', activity: 'telt' },
+
     { name: 'Spectral Trilobite', type: 'companions', activity: 'any' },
     { name: 'Golden Coelacanth', type: 'companions', activity: 'any' },
     { name: 'Winter Festival Reindeer', type: 'companions', activity: 'any' },
-    { name: 'Jynx, the sweet pea', type: 'companions', activity: 'any' },
+    { name: 'Jynx', type: 'companions', activity: 'any' },
     { name: 'Impy', type: 'companions', activity: 'any' },
     { name: "Purrtato''s minion", type: 'companions', activity: 'any' },
     { name: 'Cloverbite', type: 'companions', activity: 'any' },
     { name: "Mamota''s Messenger", type: 'companions', activity: 'any' },
-    { name: 'striped otter', type: 'companions', activity: 'any' },
-    { name: 'Earthen Mesonyx', type: 'companions', activity: 'any' },
-    { name: 'Pied Mesonyx', type: 'companions', activity: 'any' },
-    { name: 'Sunray Mesonyx', type: 'companions', activity: 'any' },
-    { name: 'Arco, the Archelon Hoarder', type: 'companions', activity: 'any' },
+    { name: 'otter', type: 'companions', activity: 'any' },
+    { name: 'Mesonyx', type: 'companions', activity: 'any' },
+    { name: 'Arco', type: 'companions', activity: 'any' },
     { name: 'will o wisp', type: 'companions', activity: 'any' },
     {
-      name: 'Crismun Fex, the Ice Dancer',
+      name: 'Crismun Fex',
       type: 'companions',
       activity: 'any',
     },
@@ -244,11 +124,11 @@ export class TackService {
     { name: 'horn of beasts', type: 'tack', activity: 'any' },
     { name: 'burning statue', type: 'tack', activity: 'any' },
     { name: 'loner trait stone', type: 'trait', activity: 'any' },
-    { name: 'treasure hunter trait stone', type: 'trait', activity: 'any' },
-    { name: 'silver tongue trait stone', type: 'trait', activity: 'any' },
-    { name: 'holiday cheer trait stone', type: 'trait', activity: 'any' },
+    { name: 'treasure hunter', type: 'trait', activity: 'any' },
+    { name: 'silver tongue', type: 'trait', activity: 'any' },
+    { name: 'holiday cheer', type: 'trait', activity: 'any' },
     {
-      name: "ra''d''s frenzy trait stone",
+      name: "ra''d''s frenzy",
       type: 'trait',
       activity: 'discovery',
     },
@@ -276,12 +156,25 @@ export class TackService {
   ];
   //#endregion
 
+  getAll(): tack[] {
+    return this._tackdb;
+  }
+
   getByType(name: string): tack[] {
     return this._tackdb.filter((i) => i.type === name);
   }
 
   getByActivity(activity: string): tack[] {
     return this._tackdb.filter((i) => i.activity === activity);
+  }
+
+  getAllTrait(): tack[] {
+    return this._tackdb.filter(
+      (i) =>
+        i.type === 'special_trait' ||
+        i.type === 'primal_trait' ||
+        i.type === 'trait'
+    );
   }
 
   sortByType(equipment: tack[]): void {

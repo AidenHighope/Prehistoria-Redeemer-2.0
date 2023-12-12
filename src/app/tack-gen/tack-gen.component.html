@@ -1,1 +1,91 @@
-<p>tack-gen works!</p>
+<nav class="navbar sticky-top navbar-dark bg-dark">
+  <form class="form-inline">
+    <button class="btn btn-dark btn-xl" (click)="hideAll()">
+      Hide item list
+    </button>
+    <button class="btn btn-dark" type="button" (click)="getTraits()">
+      Traits
+    </button>
+    <button
+      class="btn btn-dark"
+      type="button"
+      (click)="filterByCategory('tack')"
+    >
+      Tack
+    </button>
+    <button
+      class="btn btn-dark"
+      type="button"
+      (click)="filterByCategory('trials')"
+    >
+      Trials
+    </button>
+    <button
+      class="btn btn-dark"
+      type="button"
+      (click)="filterByCategory('companions')"
+    >
+      Companions
+    </button>
+  </form>
+</nav>
+
+<section class="flexy">
+  <article class="Mybox">
+    Here is the activity form generator, it is still a big wip. click the toggle
+    switch to display the forms. Click the navbar items to display the list of
+    tack/traits/etc
+
+    <label class="switch">
+      <input type="checkbox" (click)="toggleVisibility()" />
+      <span class="slider round"></span>
+    </label>
+  </article>
+</section>
+
+<section class="flexy" [ngClass]="{ toggleHide: isHidden }">
+  <article class="Mybox" *ngFor="let activity of activities" id="prehi-forms">
+    <h3 class="text-center">{{ activity | titlecase }}</h3>
+    <p><b>Import:</b></p>
+    <p><b>Tracker:</b></p>
+    <p><b>Nickname:</b></p>
+    <p><b>Attempt to tame wild:</b> yes/no</p>
+    <p><b>Relevant Items/Bonuses:</b></p>
+    <ul>
+      <li><u>Monthly Bonus (if relevant)</u></li>
+      <li *ngFor="let item of tackResult(activity)">
+        <u>{{ item.name }}</u>
+      </li>
+    </ul>
+  </article>
+</section>
+<section class="flexy">
+  <article class="Mybox">
+    <table>
+      <thead>
+        <tr>
+          <th>Items</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of allItems">
+          <td>{{ item.name | titlecase }}</td>
+          <td>
+            <button class="btn btn-danger" (click)="addTack(item)">Add</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </article>
+  <article class="Mybox">
+    <ul>
+      <li *ngFor="let item of selectedTack">
+        {{ item.name }}
+        <button (click)="removeTack(item)" class="btn btn-danger">
+          remove
+        </button>
+      </li>
+    </ul>
+  </article>
+</section>

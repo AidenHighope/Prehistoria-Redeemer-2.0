@@ -1,1 +1,11 @@
-<p>navbar works!</p>
+<nav class="navbar navbar-dark bg-dark">
+  <ul>
+    <li *ngFor="let link of links">
+      <button class="btn btn-dark btn-xl">
+        <a [routerLink]="link.url"
+          ><h3>{{ link.title | titlecase }}</h3></a
+        >
+      </button>
+    </li>
+  </ul>
+</nav>
