@@ -32,14 +32,27 @@
 
 <section class="flexy">
   <article class="Mybox">
-    Here is the activity form generator, it is still a big wip. click the toggle
-    switch to display the forms. Click the navbar items to display the list of
-    tack/traits/etc
-
-    <label class="switch">
-      <input type="checkbox" (click)="toggleVisibility()" />
-      <span class="slider round"></span>
-    </label>
+    <table class="option-bar">
+      <tbody>
+        <tr>
+          <td>
+            <p>Click the navbar items to display the list of tack/traits/etc</p>
+          </td>
+          <td>
+            display activity forms :
+            <label class="switch">
+              <input type="checkbox" (click)="toggleVisibility()" />
+              <span class="slider round"></span>
+            </label>
+          </td>
+          <td>
+            <button class="btn btn-danger" (click)="clearAll()">
+              Clear All
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </article>
 </section>
 
@@ -72,20 +85,63 @@
         <tr *ngFor="let item of allItems">
           <td>{{ item.name | titlecase }}</td>
           <td>
-            <button class="btn btn-danger" (click)="addTack(item)">Add</button>
+            <button class="btn btn-danger" (click)="addTack(item, 1000)">
+              Add
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
   </article>
   <article class="Mybox">
-    <ul>
-      <li *ngFor="let item of selectedTack">
-        {{ item.name }}
-        <button (click)="removeTack(item)" class="btn btn-danger">
-          remove
-        </button>
-      </li>
-    </ul>
+    <p
+      class="text-center"
+      *ngIf="message"
+      style="color: brown; font-style: italic"
+    >
+      {{ message }}
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Equipped items</th>
+          <th>Beast info</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>
+            <input
+              type="text"
+              placeholder="beast name"
+              [(ngModel)]="beastName"
+            />
+            <br />
+            <input type="text" placeholder="ID - ex: D1023" [(ngModel)]="id" />
+          </td>
+          <td>
+            <button
+              class="btn btn-danger"
+              (click)="setupBeast(id)"
+              [disabled]="!id"
+            >
+              submit beast
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <ul>
+              <li *ngFor="let item of selectedTack">
+                {{ item.name }}
+                <button (click)="removeTack(item)" class="btn btn-danger">
+                  remove
+                </button>
+              </li>
+            </ul>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </article>
 </section>

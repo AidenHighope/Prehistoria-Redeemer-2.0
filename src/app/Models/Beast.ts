@@ -2,6 +2,6 @@ import { tack } from './Game-item';
 
 export interface beast {
   species: string;
-  ID: number;
+  ID: string;
   equipped: tack[];
 }
