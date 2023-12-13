@@ -30,16 +30,9 @@ export class TackGenComponent {
   id: string = '';
   isHidden = true;
   message: string = '';
+  line: tack = { name: '----', type: 'none', activity: 'none' };
 
-  tackResult(activity: string): tack[] {
-    this.splitSelected = [...this.selectedTack];
-    this.orderTack(this.splitSelected);
-    return this.splitSelected.filter(
-      (a) => a.activity === activity || a.activity === 'any'
-    );
-  }
   //#endregion
-  // beast = {species: "", id: "", equipped: [tack array]}
 
   //#region beast logic
   setupBeast(id: string): void {
@@ -66,6 +59,7 @@ export class TackGenComponent {
     };
     this.setLuckyTotem(this.species);
     this.tackedBeast = dataToPush;
+    this.toggleVisibility();
   }
   setLuckyTotem(species: string) {
     let luckyTotem = this.selectedTack.find((a) => {
@@ -146,6 +140,16 @@ export class TackGenComponent {
   //#endregion
 
   //#region Sorting
+  tackResult(activity: string): tack[] {
+    // this.orderTack(this.selectedTack);
+    this.splitSelected = [...this.selectedTack];
+    this.orderTack(this.splitSelected);
+
+    return this.splitSelected.filter(
+      (a) => a.activity === activity || a.activity === 'any'
+    );
+  }
+
   filterByCategory(name: string) {
     this.allItems = this.tackService.getByType(name);
   }

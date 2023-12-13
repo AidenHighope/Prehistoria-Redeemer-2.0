@@ -39,11 +39,13 @@
             <p>Click the navbar items to display the list of tack/traits/etc</p>
           </td>
           <td>
-            display activity forms :
-            <label class="switch">
-              <input type="checkbox" (click)="toggleVisibility()" />
-              <span class="slider round"></span>
-            </label>
+            <button
+              class="btn btn-danger"
+              (click)="setupBeast(id)"
+              [disabled]="!id"
+            >
+              show forms
+            </button>
           </td>
           <td>
             <button class="btn btn-danger" (click)="clearAll()">
@@ -66,6 +68,7 @@
     <p><b>Relevant Items/Bonuses:</b></p>
     <ul>
       <li><u>Monthly Bonus (if relevant)</u></li>
+      <div></div>
       <li *ngFor="let item of tackResult(activity)">
         <u>{{ item.name }}</u>
       </li>
@@ -102,14 +105,10 @@
       {{ message }}
     </p>
     <table>
-      <thead>
-        <tr>
-          <th>Equipped items</th>
-          <th>Beast info</th>
-        </tr>
-      </thead>
+      <thead></thead>
       <tbody>
         <tr>
+          <td><b>Beast info</b></td>
           <td>
             <input
               type="text"
@@ -125,11 +124,12 @@
               (click)="setupBeast(id)"
               [disabled]="!id"
             >
-              submit beast
+              show forms
             </button>
           </td>
         </tr>
         <tr>
+          <td><b>Equipped items</b></td>
           <td>
             <ul>
               <li *ngFor="let item of selectedTack">
