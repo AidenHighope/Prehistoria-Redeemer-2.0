@@ -16,6 +16,7 @@ export interface tack {
   activity: string;
 }
 export interface CategoryOrder {
+  top: number;
   trials: number;
   special_trait: number;
   primal_trait: number;

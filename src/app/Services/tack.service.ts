@@ -106,7 +106,7 @@ export class TackService {
       type: 'companions',
       activity: 'any',
     },
-    { name: 'lucky totem', type: 'tack', activity: 'any' },
+    { name: 'lucky totem', type: 'tack top', activity: 'any' },
     { name: 'sharpened spear', type: 'tack', activity: 'hunting' },
     { name: 'hide wrapped quiver', type: 'tack', activity: 'hunting' },
     { name: 'claw of the great hunt', type: 'tack', activity: 'hunting' },
@@ -153,6 +153,8 @@ export class TackService {
     { name: "enlil's runestone", type: 'trials', activity: 'foraging' },
     { name: "imdir's runestone", type: 'trials', activity: 'expedition' },
     { name: "K'malou's runestone", type: 'trials', activity: 'any' },
+    { name: 'species advantage', type: 'top', activity: 'any' },
+    { name: 'species disadvantage', type: 'top', activity: 'any' },
   ];
   //#endregion
 
@@ -161,7 +163,7 @@ export class TackService {
   }
 
   getByType(name: string): tack[] {
-    return this._tackdb.filter((i) => i.type === name);
+    return this._tackdb.filter((i) => i.type.includes(name));
   }
 
   getByActivity(activity: string): tack[] {
@@ -177,24 +179,35 @@ export class TackService {
     );
   }
 
+  getByName(name: string): tack {
+    return this._tackdb.find((a) => {
+      return a.name === name;
+    })!;
+  }
+
   sortByType(equipment: tack[]): void {
     equipment.sort(this.customTackSort);
   }
 
   customTackSort(a: tack, b: tack): number {
     const categoryOrder: CategoryOrder = {
-      trials: 1,
-      special_trait: 2,
-      primal_trait: 3,
-      trait: 4,
-      companions: 5,
-      tack: 6,
+      top: 1,
+      trials: 2,
+      special_trait: 3,
+      primal_trait: 4,
+      trait: 5,
+      companions: 6,
+      tack: 7,
     };
+    const isTopType = (tack: tack): boolean =>
+      tack.type.toLowerCase().includes('top');
 
-    const typeA: keyof CategoryOrder =
-      a.type.toLowerCase() as keyof CategoryOrder;
-    const typeB: keyof CategoryOrder =
-      b.type.toLowerCase() as keyof CategoryOrder;
+    const typeA = isTopType(a)
+      ? 'top'
+      : (a.type.toLowerCase() as keyof CategoryOrder);
+    const typeB = isTopType(b)
+      ? 'top'
+      : (b.type.toLowerCase() as keyof CategoryOrder);
     const orderA = categoryOrder[typeA] || Number.MAX_SAFE_INTEGER;
     const orderB = categoryOrder[typeB] || Number.MAX_SAFE_INTEGER;
 

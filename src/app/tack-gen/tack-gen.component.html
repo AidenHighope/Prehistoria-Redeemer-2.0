@@ -39,11 +39,7 @@
             <p>Click the navbar items to display the list of tack/traits/etc</p>
           </td>
           <td>
-            <button
-              class="btn btn-danger"
-              (click)="setupBeast(id)"
-              [disabled]="!id"
-            >
+            <button class="btn btn-danger" (click)="toggleVisibility()">
               show forms
             </button>
           </td>
@@ -61,16 +57,20 @@
 <section class="flexy" [ngClass]="{ toggleHide: isHidden }">
   <article class="Mybox" *ngFor="let activity of activities" id="prehi-forms">
     <h3 class="text-center">{{ activity | titlecase }}</h3>
-    <p><b>Import:</b></p>
-    <p><b>Tracker:</b></p>
+    <p><b>Import:</b> [{{ beastName }} {{ id | uppercase }}]</p>
+    <p><b>Tracker:</b> [Activity tracker]</p>
     <p><b>Nickname:</b></p>
     <p><b>Attempt to tame wild:</b> yes/no</p>
     <p><b>Relevant Items/Bonuses:</b></p>
     <ul>
-      <li><u>Monthly Bonus (if relevant)</u></li>
+      <li><i>Monthly Bonus (if relevant)</i></li>
+      <li *ngIf="activity === advantage"><i>species advantage</i></li>
+      <li *ngIf="activity === disadvantage"><i>species disadvantage</i></li>
+      <li *ngIf="disadvantage">---</li>
+
       <div></div>
       <li *ngFor="let item of tackResult(activity)">
-        <u>{{ item.name }}</u>
+        <i>{{ item.name }}</i>
       </li>
     </ul>
   </article>
@@ -85,7 +85,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let item of allItems">
+        <tr *ngFor="let item of displayedItems">
           <td>{{ item.name | titlecase }}</td>
           <td>
             <button class="btn btn-danger" (click)="addTack(item, 1000)">
@@ -111,25 +111,28 @@
           <td><b>Beast info</b></td>
           <td>
             <input
+              id="beast"
               type="text"
               placeholder="beast name"
               [(ngModel)]="beastName"
             />
+            <label for="beast">beast name</label>
             <br />
-            <input type="text" placeholder="ID - ex: D1023" [(ngModel)]="id" />
-          </td>
-          <td>
-            <button
-              class="btn btn-danger"
-              (click)="setupBeast(id)"
-              [disabled]="!id"
-            >
-              show forms
-            </button>
+            <input
+              id="beastId"
+              type="text"
+              placeholder="ID - ex: D1023"
+              [(ngModel)]="id"
+              (input)="setupBeast()"
+            />
+            <label for="beastId">beast ID</label>
           </td>
         </tr>
         <tr>
           <td><b>Equipped items</b></td>
+          <td></td>
+        </tr>
+        <tr>
           <td>
             <ul>
               <li *ngFor="let item of selectedTack">
