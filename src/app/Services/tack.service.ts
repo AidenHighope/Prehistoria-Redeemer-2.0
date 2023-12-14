@@ -179,12 +179,6 @@ export class TackService {
     );
   }
 
-  getByName(name: string): tack {
-    return this._tackdb.find((a) => {
-      return a.name === name;
-    })!;
-  }
-
   sortByType(equipment: tack[]): void {
     equipment.sort(this.customTackSort);
   }

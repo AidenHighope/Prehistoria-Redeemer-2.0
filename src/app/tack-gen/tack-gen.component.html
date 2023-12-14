@@ -39,7 +39,11 @@
             <p>Click the navbar items to display the list of tack/traits/etc</p>
           </td>
           <td>
-            <button class="btn btn-danger" (click)="toggleVisibility()">
+            <button
+              class="btn btn-danger"
+              (click)="toggleVisibility()"
+              [disabled]="!isValidId()"
+            >
               show forms
             </button>
           </td>
@@ -115,6 +119,7 @@
               type="text"
               placeholder="beast name"
               [(ngModel)]="beastName"
+              required
             />
             <label for="beast">beast name</label>
             <br />
@@ -123,9 +128,14 @@
               type="text"
               placeholder="ID - ex: D1023"
               [(ngModel)]="id"
-              (input)="setupBeast()"
+              pattern="^[sddeumtwSDDEUMTW][0-9]+$"
+              (input)="onInput($event)"
+              required
             />
             <label for="beastId">beast ID</label>
+            <div *ngIf="!isValidId()" style="color: brown; font-style: italic">
+              Invalid beast Id. note: Ancient not implemented yet.
+            </div>
           </td>
         </tr>
         <tr>

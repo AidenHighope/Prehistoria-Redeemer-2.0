@@ -31,9 +31,32 @@ export class TackGenComponent {
   message: string = '';
   advantage: string = '';
   disadvantage: string = '';
+  searchItem: string = '';
   isHidden = true;
   NoTotem: boolean = true;
+  invalidInput: boolean = false;
   //#endregion
+
+  onInput(event: any) {
+    const inputElement = event.target;
+
+    if (!inputElement.checkValidity()) {
+      this.invalidInput = true;
+      inputElement.setCustomValidity('Input is invalid');
+    } else {
+      this.invalidInput = false;
+      inputElement.setCustomValidity('');
+    }
+    if (!this.isValidId()) {
+      this.isHidden = true;
+    }
+    this.setupBeast();
+  }
+
+  isValidId(): boolean {
+    const regexPattern = /^[sddeumtwSDDEUMTW][0-9]+$/;
+    return regexPattern.test(this.id);
+  }
 
   //#region beast logic
 
@@ -195,6 +218,7 @@ export class TackGenComponent {
   //#endregion
 
   //#region Sorting
+
   tackResult(activity: string): tack[] {
     this.splitSelected = [...this.selectedTack];
     this.orderTack(this.splitSelected);

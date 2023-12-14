@@ -452,7 +452,11 @@ export class ItemsService {
 
   getOne(name: string): gameitems[] {
     name.trim().toLowerCase();
-    return this._database.filter((items) => items.name.toLowerCase() === name);
+    return this._database.filter(
+      (items) =>
+        items.name.toLowerCase() === name ||
+        items.name.toLowerCase().includes(name)
+    );
   }
 
   redeemOne(item: gameitems): void {
