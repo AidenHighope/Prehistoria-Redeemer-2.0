@@ -131,11 +131,16 @@ export class TackService {
     { name: 'befriender', type: 'trait', activity: 'any' },
     { name: 'fortunes favor', type: 'trait', activity: 'any' },
     { name: 'survivor', type: 'trait', activity: 'any' },
+    { name: 'Pumpkin-O-Plenty', type: 'trait', activity: 'any' },
+    { name: 'quick learner', type: 'trait', activity: 'any' },
+
     {
-      name: "ra''d''s frenzy",
+      name: "ra'd's frenzy",
       type: 'trait',
       activity: 'discovery',
     },
+    { name: "rain's bounty", type: 'trait', activity: 'fishing' },
+
     { name: 'plains prowler', type: 'primal_trait', activity: 'hunting' },
     { name: 'aquatic affinity', type: 'primal_trait', activity: 'fishing' },
     { name: 'natural navigator', type: 'primal_trait', activity: 'discovery' },
