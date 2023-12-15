@@ -127,7 +127,10 @@ export class TackService {
     { name: 'treasure hunter', type: 'trait', activity: 'any' },
     { name: 'silver tongue', type: 'trait', activity: 'any' },
     { name: 'holiday cheer', type: 'trait', activity: 'any' },
-    //TODO add missing traits
+    { name: 'accident prone', type: 'trait', activity: 'any' },
+    { name: 'befriender', type: 'trait', activity: 'any' },
+    { name: 'fortunes favor', type: 'trait', activity: 'any' },
+    { name: 'survivor', type: 'trait', activity: 'any' },
     {
       name: "ra''d''s frenzy",
       type: 'trait',
