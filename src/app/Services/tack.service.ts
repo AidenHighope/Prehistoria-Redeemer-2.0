@@ -151,7 +151,11 @@ export class TackService {
     },
     { name: 'sun chaser', type: 'primal_trait', activity: 'any' },
     { name: 'snow wanderer', type: 'primal_trait', activity: 'any' },
-    { name: 'legendary resilience', type: 'special_trait', activity: 'any' },
+    {
+      name: 'legendary resilience (HR3)',
+      type: 'special_trait',
+      activity: 'any',
+    },
     { name: 'path of the handler', type: 'special_trait', activity: 'any' },
     { name: 'path of the primal', type: 'special_trait', activity: 'any' },
     { name: "lover's bond", type: 'special_trait', activity: 'any' },
