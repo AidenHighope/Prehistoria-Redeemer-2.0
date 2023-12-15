@@ -142,16 +142,14 @@
           <td><b>Equipped items</b></td>
           <td></td>
         </tr>
-        <tr>
+        <tr *ngFor="let item of selectedTack">
           <td>
-            <ul>
-              <li *ngFor="let item of selectedTack">
-                {{ item.name }}
-                <button (click)="removeTack(item)" class="btn btn-danger">
-                  remove
-                </button>
-              </li>
-            </ul>
+            {{ item.name }}
+          </td>
+          <td class="td-btn">
+            <button (click)="removeTack(item)" class="btn btn-danger">
+              remove
+            </button>
           </td>
         </tr>
       </tbody>
