@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { gameitems } from '../Models/Game-item';
+import { gameitems, redeemItem } from '../Models/Game-item';
 
 @Injectable({
   providedIn: 'root',
@@ -425,6 +425,38 @@ export class ItemsService {
     { name: 'snow mammoth', category: 'misc', price: 1500 },
   ];
   private _redeems: gameitems[] = [];
+
+  private _currencies: string[] = [
+    'festive tree cookie',
+    'pouch of relic fragments',
+    'handful of relic fragments',
+    'bag of relic fragments',
+    'stardust',
+    'sunstone',
+    'ghost cookie',
+    'sacred water',
+  ];
+
+  private _reveal: string[] = [
+    'bouquet',
+    'birthday cake',
+    'chocolate eggs',
+    'log cake',
+    'grimoire',
+    'valentine candle',
+    'love note',
+    'wandering ancient',
+    'hand written card',
+    'clump of moss',
+  ];
+
+  private _oneTimeUse: string[] = [
+    'carrot cake',
+    'golden coelacanth scale',
+    'golden fox bell',
+    'bead of devotion',
+    'large shining scale',
+  ];
   //#endregion
 
   getItems(): gameitems[] {
@@ -439,14 +471,20 @@ export class ItemsService {
     return this._database.filter((items) => items.category === category);
   }
 
-  getActivities(): gameitems[] {
-    return this._database.filter(
+  getActivities(list: redeemItem[]): redeemItem[] {
+    return list.filter(
       (item) =>
-        item.category === 'hunting' ||
-        'fishing' ||
-        'foraging' ||
-        'discovery' ||
-        'telt'
+        (item.itemType.category === 'hunting' ||
+          item.itemType.category === 'fishing' ||
+          item.itemType.category === 'foraging' ||
+          item.itemType.category === 'discovery' ||
+          item.itemType.category === 'telt' ||
+          item.itemType.category === 'event') &&
+        (!item.itemType.name.toLowerCase().includes('golden sabertooth idol') ||
+          !item.itemType.name.toLowerCase().includes('obsidian saber')) &&
+        (!this._currencies.includes(item.itemType.name.toLowerCase()) ||
+          !this._reveal.includes(item.itemType.name.toLowerCase()) ||
+          !this._oneTimeUse.includes(item.itemType.name.toLowerCase()))
     );
   }
 
@@ -461,5 +499,43 @@ export class ItemsService {
 
   redeemOne(item: gameitems): void {
     this._redeems.push(item);
+  }
+
+  getOneTimeUse(list: redeemItem[]): redeemItem[] {
+    return list.filter((i) => this._oneTimeUse.includes(i.itemType.name));
+  }
+
+  getCurrency(list: redeemItem[]): redeemItem[] {
+    return list.filter((items) => {
+      items.itemType.category === 'currency' ||
+        this._currencies.includes(items.itemType.name.toLowerCase());
+    });
+  }
+
+  getTack(list: redeemItem[]): redeemItem[] {
+    return list.filter((items) => {
+      items.itemType.category === 'tack' ||
+        items.itemType.category === 'companions' ||
+        items.itemType.category === 'trait' ||
+        items.itemType.name.toLowerCase().includes('obsidian saber') ||
+        items.itemType.name.toLowerCase().includes('golden sabertooth idol');
+    });
+  }
+
+  getCosmetic(list: redeemItem[]): redeemItem[] {
+    return list.filter((items) => {
+      items.itemType.category === 'cosmetic';
+    });
+  }
+  getReveal(list: redeemItem[]): redeemItem[] {
+    return list.filter((i) => {
+      i.itemType.category === 'reveal' ||
+        this._reveal.includes(i.itemType.name.toLowerCase());
+    });
+  }
+  getBreedingAndGeno(list: redeemItem[]): redeemItem[] {
+    return list.filter((i) => {
+      i.itemType.category === 'breeding' || i.itemType.category === 'geno';
+    });
   }
 }

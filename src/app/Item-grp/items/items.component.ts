@@ -22,10 +22,19 @@ export class ItemsComponent {
   oneRedeem: redeemItem[] = [];
   Comment: admincomment[] = [];
   buttonDisabled: boolean = false;
+  usesSilverTongue: boolean = false;
   input: string = '';
   url: string = '[link]';
   extrabeads: string = '0';
-  usesSilverTongue: boolean = false;
+  bankColumnTitle: string[] = [
+    'item',
+    'tack',
+    'cosmetic',
+    'breeding',
+    'reveal',
+    'oneTime',
+    'calendar',
+  ];
 
   //#region filter and search
 
@@ -173,5 +182,28 @@ export class ItemsComponent {
     groupedItems.sort((a, b) => a.itemType.name.localeCompare(b.itemType.name));
     return groupedItems;
   }
+
+  splittingList(category: string): redeemItem[] {
+    let newList = [...this.processedItems()];
+    switch (category) {
+      case 'item':
+        return this.itemService.getActivities(newList);
+      case 'tack':
+        return this.itemService.getTack(newList);
+      case 'cosmetic':
+        return this.itemService.getCosmetic(newList);
+      case 'breeding':
+        return this.itemService.getBreedingAndGeno(newList);
+      case 'reveal':
+        return this.itemService.getReveal(newList);
+      case 'oneTime':
+        return this.itemService.getOneTimeUse(newList);
+      case 'calendar':
+        return newList.filter((i) => i.itemType.category === 'calendar');
+      default:
+        return newList;
+    }
+  }
+
   //#endregion
 }
