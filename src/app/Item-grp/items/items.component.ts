@@ -14,6 +14,7 @@ export class ItemsComponent {
     this.Redeem = itemService.getRedeems();
   }
   //TODO add a way to add custom reward (for non regular items given by monthly bonus or something)
+  //TODO implement copy paste button
   //Variables
   database: gameitems[];
   Redeem: gameitems[];
@@ -27,12 +28,13 @@ export class ItemsComponent {
   url: string = '[link]';
   extrabeads: string = '0';
   bankColumnTitle: string[] = [
-    'item',
-    'tack',
+    'currency',
+    'activities',
+    'equip',
     'cosmetic',
-    'breeding',
+    'breedingGeno',
     'reveal',
-    'oneTime',
+    'oneTimeUse',
     'calendar',
   ];
 
@@ -181,28 +183,6 @@ export class ItemsComponent {
     });
     groupedItems.sort((a, b) => a.itemType.name.localeCompare(b.itemType.name));
     return groupedItems;
-  }
-
-  splittingList(category: string): redeemItem[] {
-    let newList = [...this.processedItems()];
-    switch (category) {
-      case 'item':
-        return this.itemService.getActivities(newList);
-      case 'tack':
-        return this.itemService.getTack(newList);
-      case 'cosmetic':
-        return this.itemService.getCosmetic(newList);
-      case 'breeding':
-        return this.itemService.getBreedingAndGeno(newList);
-      case 'reveal':
-        return this.itemService.getReveal(newList);
-      case 'oneTime':
-        return this.itemService.getOneTimeUse(newList);
-      case 'calendar':
-        return newList.filter((i) => i.itemType.category === 'calendar');
-      default:
-        return newList;
-    }
   }
 
   //#endregion

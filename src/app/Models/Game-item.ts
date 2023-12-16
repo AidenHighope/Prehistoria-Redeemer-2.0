@@ -2,6 +2,7 @@ export interface gameitems {
   name: string;
   category: string;
   price: number;
+  redeemType: string;
 }
 
 export interface redeemItem {
