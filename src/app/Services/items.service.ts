@@ -1139,6 +1139,24 @@ export class ItemsService {
       price: 1000,
       redeemType: 'equip',
     },
+    {
+      name: 'royal gala worg puppy',
+      category: 'companions',
+      price: 1000,
+      redeemType: 'equip',
+    },
+    {
+      name: 'panda worg puppy',
+      category: 'companions',
+      price: 1000,
+      redeemType: 'equip',
+    },
+    {
+      name: 'ruby worg puppy',
+      category: 'companions',
+      price: 1000,
+      redeemType: 'equip',
+    },
     { name: 'Huxli', category: 'companions', price: 1000, redeemType: 'equip' },
     {
       name: 'Luxili',

@@ -168,6 +168,7 @@ export class TackService {
     { name: "K'malou's runestone", type: 'trials', activity: 'any' },
     { name: 'species advantage', type: 'top', activity: 'any' },
     { name: 'species disadvantage', type: 'top', activity: 'any' },
+    { name: 'worg puppy', type: 'companions', activity: 'any' },
   ];
   //#endregion
 
