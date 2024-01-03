@@ -52,6 +52,22 @@ export class ItemsComponent {
   //#endregion
 
   //#region items handling
+  // added trait shards handling as its own thing for display purpose and admin lisibility
+  addTraitShards(hasShards: boolean, qty: number, toPush: redeemItem[]) {
+    let lePush: redeemItem;
+    let shards: gameitems;
+    shards = {
+      name: 'trait shard',
+      category: 'currency',
+      price: 1000,
+      redeemType: 'currency',
+    };
+    if (hasShards) {
+      lePush = { qty: qty, itemType: shards, isStashed: true };
+      toPush.push(lePush);
+    }
+  }
+
   addOrStash(item: gameitems, bool: string) {
     this.itemService.redeemOne(item);
     let lePush: redeemItem;
@@ -95,7 +111,15 @@ export class ItemsComponent {
 
   newComment(): void {
     this.oneRedeem = [...this.currentRedeem];
-
+    this.oneRedeem.forEach((item) => {
+      if (item.itemType.shards !== undefined && !item.isStashed) {
+        this.addTraitShards(
+          true,
+          item.itemType.shards * item.qty,
+          this.redeemedItems
+        );
+      }
+    });
     let sum = 0;
     this.currentRedeem.forEach((beads) => {
       let price = beads.itemType.price;
@@ -119,6 +143,7 @@ export class ItemsComponent {
     if (this.currentRedeem.length > 0) {
       this.Comment.push(commentContent);
     }
+
     this.redeemedItems.push(...this.oneRedeem);
     this.clearOne(this.currentRedeem);
     this.url = '[link]';

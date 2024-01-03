@@ -219,15 +219,31 @@
       <br />
       <p><b>Admin comment :</b> {{ item.url }}</p>
       <p><b>Items :</b></p>
-      <p *ngIf="item.silverTongue"><i>has silver tongue</i></p>
+      <p *ngIf="item.silverTongue"><i>[this beast] has silver tongue</i></p>
       <ul>
         <li *ngFor="let lootItem of item.loot">
           x{{ lootItem.qty }} {{ lootItem.itemType.name | titlecase }}
           <span *ngIf="lootItem.isStashed">(STASHED)</span>
-          <span *ngIf="!lootItem.isStashed && !item.silverTongue"
+          <span
+            *ngIf="
+              !lootItem.isStashed &&
+              !item.silverTongue &&
+              lootItem.itemType.shards === undefined
+            "
             >({{ lootItem.itemType.price * lootItem.qty }})</span
           >
-          <span *ngIf="!lootItem.isStashed && item.silverTongue"
+          <span
+            *ngIf="
+              !lootItem.isStashed && lootItem.itemType.shards !== undefined
+            "
+            >({{ lootItem.itemType.shards * lootItem.qty }} trait shards)</span
+          >
+          <span
+            *ngIf="
+              !lootItem.isStashed &&
+              item.silverTongue &&
+              lootItem.itemType.shards === undefined
+            "
             >({{
               mapSilverTongue(lootItem.itemType.price) * lootItem.qty
             }})</span
