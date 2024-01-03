@@ -11,5 +11,6 @@ export class NavbarComponent {
     { title: 'home', url: '/home' },
     { title: 'item redeemer', url: '/Item-grp' },
     { title: 'activity form generator', url: '/tack-gen' },
+    { title: 'Milestones & crafts', url: '/milestone' },
   ];
 }

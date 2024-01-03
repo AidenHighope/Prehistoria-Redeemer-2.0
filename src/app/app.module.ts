@@ -9,9 +9,18 @@ import { StModifierPipe } from './Pipe/st-modifier.pipe';
 import { TackGenComponent } from './tack-gen/tack-gen.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { MilestoneComponent } from './milestone/milestone.component';
 
 @NgModule({
-  declarations: [AppComponent, ItemsComponent, StModifierPipe, TackGenComponent, HomeComponent, NavbarComponent],
+  declarations: [
+    AppComponent,
+    ItemsComponent,
+    StModifierPipe,
+    TackGenComponent,
+    HomeComponent,
+    NavbarComponent,
+    MilestoneComponent,
+  ],
   imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],

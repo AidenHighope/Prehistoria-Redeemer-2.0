@@ -14,7 +14,6 @@ export class ItemsComponent {
     this.Redeem = itemService.getRedeems();
   }
   //TODO add a way to add custom reward (for non regular items given by monthly bonus or something)
-  //TODO implement copy paste button
   //Variables
   database: gameitems[];
   Redeem: gameitems[];
