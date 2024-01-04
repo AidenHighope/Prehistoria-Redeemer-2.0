@@ -1,1 +1,21 @@
-<p>milestone works!</p>
+<section class="flexy">
+  <article class="Mybox text-center">
+    items here <br />
+    <textarea
+      [(ngModel)]="playerInput"
+      name="playerInput"
+      id="playerInput"
+      cols="30"
+      rows="10"
+    ></textarea>
+    <button (click)="processItems(playerInput)">what can I make?</button>
+  </article>
+  <article class="Mybox">
+    <ul *ngFor="let milestone of craftableMilestones">
+      <li>{{ milestone.name }} part {{ milestone.phaseId }}</li>
+      <li *ngFor="let item of milestone.requiredItems">
+        {{ item.qty }}x {{ item.name }}
+      </li>
+    </ul>
+  </article>
+</section>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Crafts, Milestones } from '../Models/Milestone-Crafts';
+import { Crafts, Ingredients, Milestones } from '../Models/Milestone-Crafts';
 
 @Injectable({
   providedIn: 'root',
@@ -11,37 +11,74 @@ export class RecipeService {
       category: 'hunting',
       name: 'Protecting the Homelands',
       phaseId: 1,
-      itemName: ['mauled pelt'],
-      itemQty: [5],
+      requiredItems: [{ name: 'mauled pelt', qty: 5 }],
     },
     {
       category: 'hunting',
       name: 'Protecting the Homelands',
       phaseId: 2,
-      itemName: ['warm wolf fur'],
-      itemQty: [5],
+      requiredItems: [{ name: 'warm wolf fur', qty: 5 }],
     },
     {
       category: 'hunting',
       name: 'Protecting the Homelands',
       phaseId: 3,
-      itemName: ['pristine lion fangs', 'silky albino fur'],
-      itemQty: [4, 2],
+      requiredItems: [
+        { name: 'pristine lion fangs', qty: 4 },
+        { name: 'silky albino fur', qty: 2 },
+      ],
     },
     {
       category: 'hunting',
       name: 'Protecting the Homelands',
       phaseId: 4,
-      itemName: ['striped pelt', 'silky albino fur'],
-      itemQty: [3, 2],
+      requiredItems: [
+        { name: 'striped pelt', qty: 3 },
+        { name: 'silky albino fur', qty: 2 },
+      ],
     },
     {
       category: 'hunting',
       name: 'Protecting the Homelands',
       phaseId: 5,
-      itemName: ['wooly rhino horn', 'cursed mammoth tusks'],
-      itemQty: [2, 1],
+      requiredItems: [
+        { name: 'wooly rhino horn', qty: 2 },
+        { name: 'cursed mammoth tusks', qty: 1 },
+      ],
     },
   ];
   private _crafts: Crafts[] = [];
+
+  getAllMilestones(): Milestones[] {
+    return this._milestones;
+  }
+
+  getAvailableMilestones(requiredItems: Ingredients[]): Milestones[] {
+    return this._milestones.filter((milestone) => {
+      let allItemsPresent = milestone.requiredItems.every((requiredItem) => {
+        let matchingItem = requiredItems.find(
+          (playerItem) =>
+            playerItem.name.toLowerCase() === requiredItem.name.toLowerCase()
+        );
+
+        return matchingItem && matchingItem.qty >= requiredItem.qty;
+      });
+
+      return allItemsPresent;
+    });
+  }
+
+  parseIngredients(inputText: string): Ingredients[] {
+    let lines = inputText.split('\n');
+    let itemList: Ingredients[] = [];
+    lines.forEach((line) => {
+      let match = line.match(/^(\d+)x\s+(.+)/);
+      if (match) {
+        let qty = parseInt(match[1], 10);
+        let name = match[2].trim().toLowerCase();
+        itemList.push({ name, qty });
+      }
+    });
+    return itemList;
+  }
 }
