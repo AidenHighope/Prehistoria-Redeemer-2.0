@@ -469,7 +469,6 @@ export class RecipeService {
       return allItemsPresent;
     });
   }
-  //TODO: check if it matches with an extra "s" at the end of by removing a "s" at the end
   parseIngredients(inputText: string): Ingredients[] {
     let lines = inputText.split('\n');
     let itemList: Ingredients[] = [];
@@ -482,5 +481,9 @@ export class RecipeService {
       }
     });
     return itemList;
+  }
+
+  getMilestonesByCategory(input: string): Milestones[] {
+    return this._milestones.filter((milestone) => milestone.category === input);
   }
 }

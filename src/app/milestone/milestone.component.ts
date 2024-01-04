@@ -28,4 +28,9 @@ export class MilestoneComponent {
   parseInput(input: string): Ingredients[] {
     return this.recipeService.parseIngredients(input);
   }
+
+  filterCategory(input: string): Milestones[] {
+    return (this.craftableMilestones =
+      this.recipeService.getMilestonesByCategory(input));
+  }
 }
