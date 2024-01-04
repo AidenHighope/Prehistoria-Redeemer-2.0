@@ -18,7 +18,6 @@ export class MilestoneComponent {
   playerItems: Ingredients[] = [];
 
   processItems(input: string): void {
-    //this.parseInput(input);
     let list = this.parseInput(input);
     this.getMilestone(list);
   }
