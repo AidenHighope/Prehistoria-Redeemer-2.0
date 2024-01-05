@@ -16,21 +16,35 @@ export class MilestoneComponent {
   craftableMilestones: Milestones[] = [];
   playerInput!: string;
   playerItems: Ingredients[] = [];
+  isActive: boolean = true;
+
+  //#region DOM
+  toggleCollapse(): void {
+    this.isActive = !this.isActive;
+  }
+
+  //#endregion
 
   processItems(input: string): void {
     let list = this.parseInput(input);
     this.getMilestone(list);
   }
-
-  getMilestone(list: Ingredients[]): void {
-    this.craftableMilestones = this.recipeService.getAvailableMilestones(list);
-  }
   parseInput(input: string): Ingredients[] {
     return this.recipeService.parseIngredients(input);
+  }
+  //#region getItems
+  getMilestone(list: Ingredients[]): void {
+    this.craftableMilestones = this.recipeService.getAvailableMilestones(list);
   }
 
   filterCategory(input: string): Milestones[] {
     return (this.craftableMilestones =
       this.recipeService.getMilestonesByCategory(input));
   }
+
+  filterReward(input: string): Milestones[] {
+    return (this.craftableMilestones =
+      this.recipeService.getMilestonesByReward(input));
+  }
+  //#endregion
 }

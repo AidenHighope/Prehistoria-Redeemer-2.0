@@ -1,4 +1,32 @@
 <nav class="navbar sticky-top navbar-dark bg-dark">
+  <div class="Mydropdown">
+    <span class="btn btn-dark">Find rewards</span>
+    <div class="Mydropdown-content">
+      <ul>
+        <li>
+          <button class="btn btn-dark" (click)="filterReward('breeding')">
+            Breeding|geno|slots
+          </button>
+        </li>
+        <li>
+          <button class="btn btn-dark" (click)="filterReward('tack')">
+            tack|trait|companions
+          </button>
+        </li>
+        <li>
+          <button class="btn btn-dark" (click)="filterReward('currency')">
+            coin|shards
+          </button>
+        </li>
+        <li>
+          <button class="btn btn-dark" (click)="filterReward('misc')">
+            misc
+          </button>
+        </li>
+      </ul>
+    </div>
+  </div>
+
   <form class="form-inline">
     <button
       class="btn btn-dark"
@@ -41,26 +69,33 @@
     </button>
   </form>
 </nav>
+
 <section class="flexy">
   <article class="Mybox">
-    <p class="text-center"></p>
-    <h2>How to use :</h2>
-    <p>
-      simply copy paste the relevant columns of your stash (without the titles)
-      and click the button!<br />
-      if you suspect an item hasn't been recognized, try changing it from
-      singular to plural or the other way around! You can also click the button
-      to have a list of the different milestones and check manually
-    </p>
-    <h3>only milestones are currently implemented.</h3>
-    <p>
-      🚨🚨 the items are only recognized if the spelling matches EXACTLY what I
-      encoded. <br />
-      In the bank a same item in one player stash will be singular and plural in
-      another player's.<br />
-      That means I can't ensure this tool will work perfectly due to the high
-      chance of human error.🚨🚨
-    </p>
+    <button type="button" class="collapsible" (click)="toggleCollapse()">
+      <strong>How to use :</strong> <i>click to hide</i>
+    </button>
+    <div
+      class="collapse-content"
+      [ngClass]="{ isHidden: !isActive, isActive: isActive }"
+    >
+      <p>
+        simply copy paste the relevant columns of your stash (without the
+        titles) and click the button!<br />
+        if you suspect an item hasn't been recognized, try changing it from
+        singular to plural or the other way around! You can also click the
+        button to have a list of the different milestones and check manually
+      </p>
+      <h3>only milestones are currently implemented.</h3>
+      <p>
+        🚨🚨 the items are only recognized if the spelling matches EXACTLY what
+        I encoded. <br />
+        In the bank a same item in one player stash will be singular and plural
+        in another player's.<br />
+        That means I can't ensure this tool will work perfectly due to the high
+        chance of human error.🚨🚨
+      </p>
+    </div>
   </article>
 </section>
 <section class="flexy">
@@ -87,6 +122,9 @@
       </li>
       <li *ngFor="let item of milestone.requiredItems">
         {{ item.qty }}x {{ item.name }}
+      </li>
+      <li *ngIf="milestone.reward !== undefined">
+        <b>Reward:</b> {{ milestone.reward?.item }}
       </li>
     </ul>
   </article>
