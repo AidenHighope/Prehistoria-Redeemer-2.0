@@ -586,7 +586,545 @@ export class RecipeService {
       },
     },
   ];
-  private _crafts: Crafts[] = [];
+  private _crafts: Crafts[] = [
+    {
+      name: 'hide wrapped quiver',
+      difficulty: 'beginner',
+      requiredItems: [
+        { qty: 3, name: 'mauled pelt' },
+        { qty: 1, name: 'assorted feathers' },
+        { qty: 1, name: 'sharpened flint' },
+      ],
+    },
+    {
+      name: 'simple bait',
+      difficulty: 'beginner',
+      requiredItems: [
+        { qty: 2, name: 'dewclaw' },
+        { qty: 2, name: 'succulent fish meat' },
+        { qty: 1, name: 'broken bow string' },
+      ],
+    },
+    {
+      name: 'map',
+      difficulty: 'beginner',
+      requiredItems: [
+        { qty: 3, name: 'leather strips' },
+        { qty: 1, name: 'ochre' },
+        { qty: 1, name: 'pristine lion fangs' },
+      ],
+    },
+    {
+      name: 'bone sickle',
+      difficulty: 'beginner',
+      requiredItems: [
+        { qty: 2, name: 'antler spear head' },
+        { qty: 2, name: 'leather strips' },
+        { qty: 1, name: 'thalassomedon skull' },
+      ],
+    },
+    {
+      name: 'adornments',
+      difficulty: 'beginner',
+      requiredItems: [
+        { qty: 2, name: 'ammonite shell' },
+        { qty: 1, name: 'cave bear claws' },
+        { qty: 2, name: 'ancient jewelry' },
+      ],
+    },
+    {
+      name: 'battle wounds',
+      difficulty: 'beginner',
+      requiredItems: [
+        { qty: 2, name: 'aloe vera' },
+        { qty: 2, name: 'chamomile' },
+        { qty: 1, name: 'sharpened flint' },
+      ],
+    },
+    {
+      name: 'bowl of paints',
+      difficulty: 'beginner',
+      requiredItems: [
+        { qty: 3, name: 'marigold' },
+        { qty: 1, name: 'berries' },
+        { qty: 1, name: 'mint' },
+      ],
+    },
+    {
+      name: 'cosmetic remover 1',
+      difficulty: 'beginner',
+      requiredItems: [
+        { qty: 2, name: 'aloe vera' },
+        { qty: 2, name: 'woven basket' },
+        { qty: 1, name: 'sharpened flint' },
+      ],
+    },
+    {
+      name: 'companion remover 1',
+      difficulty: 'beginner',
+      requiredItems: [
+        { qty: 3, name: 'sinew rope' },
+        { qty: 1, name: 'elk pelt' },
+        { qty: 1, name: 'woven basket' },
+      ],
+    },
+    {
+      name: 'trait remover 1',
+      difficulty: 'beginner',
+      requiredItems: [
+        { qty: 2, name: 'cloven hooves' },
+        { qty: 1, name: 'henodus shell' },
+        { qty: 1, name: 'sturdy lumber' },
+      ],
+    },
+    {
+      name: 'tack remover 1',
+      difficulty: 'beginner',
+      requiredItems: [
+        { qty: 2, name: 'sabertooth salmon' },
+        { qty: 1, name: 'handful of predator teeth' },
+        { qty: 1, name: 'nothosaurus claws' },
+      ],
+    },
+    {
+      name: 'sharpened spear',
+      difficulty: 'apprentice',
+      requiredItems: [
+        { qty: 2, name: 'sinew rope' },
+        { qty: 1, name: 'antler spear head' },
+        { qty: 1, name: 'megalodon tooth' },
+        { qty: 1, name: 'sturdy lumber' },
+      ],
+    },
+    {
+      name: 'hand woven net',
+      difficulty: 'apprentice',
+      requiredItems: [
+        { qty: 5, name: 'broken bow string' },
+        { qty: 1, name: 'ancient metal rings' },
+        { qty: 1, name: 'black coelacanth' },
+      ],
+    },
+    {
+      name: 'warm bindings',
+      difficulty: 'apprentice',
+      requiredItems: [
+        { qty: 3, name: 'warm wolf fur' },
+        { qty: 2, name: 'leather strips' },
+        { qty: 1, name: 'silky albino fur' },
+      ],
+    },
+    {
+      name: 'small plant bag',
+      difficulty: 'apprentice',
+      requiredItems: [
+        { qty: 3, name: 'seeds' },
+        { qty: 2, name: 'potato' },
+        { qty: 1, name: 'catnip' },
+        { qty: 1, name: 'elk pelt' },
+      ],
+    },
+    {
+      name: 'witches wand',
+      difficulty: 'apprentice',
+      requiredItems: [
+        { qty: 4, name: 'leather strips' },
+        { qty: 1, name: 'sturdy lumber' },
+        { qty: 1, name: 'large shining scale' },
+      ],
+    },
+    {
+      name: 'expression changer',
+      difficulty: 'apprentice',
+      requiredItems: [
+        { qty: 4, name: 'eurypterid' },
+        { qty: 3, name: 'marigold' },
+        { qty: 1, name: 'hawthorn' },
+      ],
+    },
+    {
+      name: 'ear changer',
+      difficulty: 'apprentice',
+      requiredItems: [
+        { qty: 3, name: 'aloe vera' },
+        { qty: 2, name: 'broken bow string' },
+        { qty: 2, name: 'jagged tooth knife' },
+      ],
+    },
+    {
+      name: 'eye changer',
+      difficulty: 'apprentice',
+      requiredItems: [
+        { qty: 2, name: 'berries' },
+        { qty: 2, name: 'leather strips' },
+        { qty: 1, name: 'hawthorn' },
+        { qty: 1, name: 'henodus shell' },
+      ],
+    },
+    {
+      name: 'magical adornments',
+      difficulty: 'apprentice',
+      requiredItems: [
+        { qty: 2, name: 'ammonite shell' },
+        { qty: 2, name: 'ancient jewelry' },
+        { qty: 2, name: 'cave bear claws' },
+        { qty: 1, name: 'large shining scale' },
+      ],
+    },
+    {
+      name: 'bait',
+      difficulty: 'apprentice',
+      requiredItems: [
+        { qty: 3, name: 'succulent fish meat' },
+        { qty: 2, name: 'apple' },
+        { qty: 2, name: 'berries' },
+        { qty: 1, name: 'catnip' },
+      ],
+    },
+    {
+      name: 'tack upgrade',
+      difficulty: 'apprentice',
+      requiredItems: [
+        { qty: 4, name: 'leather strips' },
+        { qty: 1, name: 'horseshoe crab shell' },
+        { qty: 1, name: 'striped pelt' },
+      ],
+    },
+    {
+      name: 'health potion',
+      difficulty: 'apprentice',
+      requiredItems: [
+        { qty: 3, name: 'chamomile' },
+        { qty: 2, name: 'aloe vera' },
+        { qty: 2, name: 'berries' },
+        { qty: 1, name: 'catnip' },
+      ],
+    },
+    {
+      name: 'machuahuilt',
+      difficulty: 'apprentice',
+      requiredItems: [
+        { qty: 3, name: 'chunk of obsidian' },
+        { qty: 2, name: 'sarcosuchus tooth' },
+        { qty: 2, name: 'turquoise' },
+        { qty: 1, name: 'golden coin' },
+      ],
+    },
+    {
+      name: 'claw of the great hunt',
+      difficulty: 'expert',
+      requiredItems: [
+        { qty: 4, name: 'pristine lion fangs' },
+        { qty: 2, name: 'fragmented soul essence' },
+        { qty: 2, name: 'sinew rope' },
+        { qty: 1, name: 'obsidian blade' },
+      ],
+    },
+    {
+      name: 'glittering talisman',
+      difficulty: 'expert',
+      requiredItems: [
+        { qty: 3, name: 'ancient jewelry' },
+        { qty: 2, name: 'broken bow string' },
+        { qty: 2, name: 'golden coelacanth scale' },
+        { qty: 1, name: 'large shining scale' },
+        { qty: 1, name: 'skyfire diamond' },
+      ],
+    },
+    {
+      name: 'muddy notes',
+      difficulty: 'expert',
+      requiredItems: [
+        { qty: 4, name: 'ochre' },
+        { qty: 2, name: 'elk pelt' },
+        { qty: 2, name: 'striped pelt' },
+        { qty: 1, name: 'mauled pelt' },
+        { qty: 1, name: 'strawberries' },
+      ],
+    },
+    {
+      name: 'abandoned foraging basket',
+      difficulty: 'expert',
+      requiredItems: [
+        { qty: 4, name: 'woven basket' },
+        { qty: 2, name: 'parsnip' },
+        { qty: 2, name: 'tomato' },
+        { qty: 1, name: 'elk pelt' },
+        { qty: 1, name: 'cherries' },
+      ],
+    },
+    {
+      name: 'lucky totem',
+      difficulty: 'expert',
+      requiredItems: [
+        { name: 'berries', qty: 4 },
+        { qty: 2, name: 'mint' },
+        { qty: 2, name: 'obsidian blade' },
+        { qty: 1, name: 'cursed mammoth tusks' },
+        { qty: 1, name: 'fragmented soul essence' },
+      ],
+    },
+    {
+      name: 'false statue',
+      difficulty: 'expert',
+      requiredItems: [
+        { qty: 6, name: 'mint' },
+        { qty: 3, name: 'catnip' },
+        { qty: 1, name: 'megalodon carcass' },
+      ],
+    },
+    {
+      name: 'false donii',
+      difficulty: 'expert',
+      requiredItems: [
+        { qty: 5, name: 'coral' },
+        { qty: 3, name: 'obsidian blade' },
+        { qty: 1, name: 'dunkleosteus' },
+      ],
+    },
+    {
+      name: 'potion of oblivion',
+      difficulty: 'expert',
+      requiredItems: [
+        { qty: 1, name: 'fragmented soul essence' },
+        { qty: 1, name: 'hawthorn' },
+        { qty: 4, name: 'marigold' },
+        { qty: 1, name: 'moonsteel bar' },
+        { qty: 1, name: 'opabinia' },
+      ],
+    },
+    {
+      name: 'cosmetic remover 2',
+      difficulty: 'expert',
+      requiredItems: [
+        { qty: 4, name: 'woven basket' },
+        { qty: 2, name: 'aloe vera' },
+        { qty: 2, name: 'jagged tooth knife' },
+        { qty: 2, name: 'fragmented soul essence' },
+      ],
+    },
+    {
+      name: 'companion remover 2',
+      difficulty: 'expert',
+      requiredItems: [
+        { qty: 3, name: 'succulent fish meat' },
+        { qty: 2, name: 'apple' },
+        { qty: 2, name: 'catnip' },
+        { qty: 1, name: 'chimeric pelt' },
+        { qty: 1, name: 'silky albino fur' },
+      ],
+    },
+    {
+      name: 'trait remover 2',
+      difficulty: 'expert',
+      requiredItems: [
+        { qty: 3, name: 'henodus shell' },
+        { qty: 2, name: 'cloven hooves' },
+        { qty: 2, name: 'opabinia' },
+        { qty: 2, name: 'wooly rhino horn' },
+        { qty: 1, name: 'skyfire diamond' },
+      ],
+    },
+    {
+      name: 'tack remover 2',
+      difficulty: 'expert',
+      requiredItems: [
+        { qty: 3, name: 'sabertooth salmon' },
+        { qty: 2, name: 'fragmented soul essence' },
+        { qty: 2, name: 'handful of predator teeth' },
+        { qty: 2, name: 'nothosaurus claws' },
+        { qty: 1, name: 'megalodon tooth' },
+      ],
+    },
+    {
+      name: 'wooden spirit idol',
+      difficulty: 'expert',
+      requiredItems: [
+        { qty: 4, name: 'sharpened flint' },
+        { qty: 2, name: 'fragmented soul essence' },
+        { qty: 2, name: 'sturdy lumber' },
+        { qty: 1, name: 'jagged tooth knife' },
+        { qty: 1, name: 'obsidian blade' },
+      ],
+    },
+    {
+      name: 'species advantage booster',
+      difficulty: 'expert',
+      requiredItems: [
+        { qty: 4, name: 'cloven hooves' },
+        { qty: 2, name: 'ammonite shell' },
+        { qty: 2, name: 'ancient metal rings' },
+        { qty: 1, name: 'cherries' },
+      ],
+    },
+    {
+      name: 'event booster',
+      difficulty: 'expert',
+      requiredItems: [
+        { qty: 4, name: 'tomato' },
+        { qty: 2, name: 'antler spear head' },
+        { qty: 2, name: 'opabinia' },
+        { qty: 1, name: 'dunkleosteus' },
+      ],
+    },
+    {
+      name: 'potion of wisdom',
+      difficulty: 'expert',
+      requiredItems: [
+        { qty: 4, name: 'black coelacanth' },
+        { qty: 3, name: 'assorted feathers' },
+        { qty: 1, name: 'horseshoe crab shell' },
+        { qty: 1, name: 'megalodon carcass' },
+      ],
+    },
+    {
+      name: 'lovingly carved donii',
+      difficulty: 'master',
+      requiredItems: [
+        { qty: 4, name: 'nothosaurus claws' },
+        { qty: 3, name: 'fragmented soul essence' },
+        { qty: 2, name: 'catnip' },
+        { qty: 2, name: 'jagged tooth knife' },
+        { qty: 2, name: 'strawberries' },
+        { qty: 1, name: 'cursed mammoth tusks' },
+      ],
+    },
+    {
+      name: 'crude steel statue',
+      difficulty: 'master',
+      requiredItems: [
+        { qty: 4, name: 'henodus shell' },
+        { qty: 3, name: 'fragmented soul essence' },
+        { qty: 2, name: 'cherries' },
+        { qty: 2, name: 'hawthorn' },
+        { qty: 2, name: 'striped pelt' },
+        { qty: 1, name: 'moonsteel bar' },
+      ],
+    },
+    {
+      name: 'witches brew',
+      difficulty: 'master',
+      requiredItems: [
+        { qty: 4, name: 'mint' },
+        { qty: 3, name: 'assorted feathers' },
+        { qty: 3, name: 'silky albino fur' },
+        { qty: 2, name: 'megalodon carcass' },
+        { qty: 2, name: 'opabinia' },
+        { qty: 1, name: 'chimeric pelt' },
+      ],
+    },
+    {
+      name: 'golden charm of bending',
+      difficulty: 'master',
+      requiredItems: [
+        { qty: 3, name: 'golden coelacanth scale' },
+        { qty: 2, name: 'long forgotten coin' },
+        { qty: 2, name: 'obsidian blade' },
+        { qty: 1, name: 'skyfire diamond' },
+        { qty: 1, name: 'strawberries' },
+      ],
+    },
+    {
+      name: 'golden charm of shapeshifting',
+      difficulty: 'master',
+      requiredItems: [
+        { qty: 5, name: 'fragmented soul essence' },
+        { qty: 3, name: 'golden coelacanth scale' },
+        { qty: 2, name: 'long forgotten coin' },
+        { qty: 2, name: 'obsidian blade' },
+        { qty: 1, name: 'skyfire diamond' },
+      ],
+    },
+    {
+      name: 'golden charm of altering',
+      difficulty: 'master',
+      requiredItems: [
+        { qty: 3, name: 'golden coelacanth scale' },
+        { qty: 2, name: 'long forgotten coin' },
+        { qty: 2, name: 'obsidian blade' },
+        { qty: 1, name: 'large shining scale' },
+        { qty: 1, name: 'skyfire diamond' },
+      ],
+    },
+    {
+      name: 'head armor',
+      difficulty: 'master',
+      requiredItems: [
+        { qty: 4, name: 'handful of predator teeth' },
+        { qty: 4, name: 'thalassomedon skull' },
+        { qty: 3, name: 'ancient metal rings' },
+        { qty: 2, name: 'silky albino fur' },
+        { qty: 1, name: 'dunkleosteus' },
+      ],
+    },
+    {
+      name: 'leg armor',
+      difficulty: 'master',
+      requiredItems: [
+        { qty: 4, name: 'handful of predator teeth' },
+        { qty: 4, name: 'nothosaurus claws' },
+        { qty: 3, name: 'ancient metal rings' },
+        { qty: 2, name: 'silky albino fur' },
+        { qty: 1, name: 'dunkleosteus' },
+      ],
+    },
+    {
+      name: 'body armor',
+      difficulty: 'master',
+      requiredItems: [
+        { qty: 5, name: 'handful of predator teeth' },
+        { qty: 4, name: 'ancient metal rings' },
+        { qty: 3, name: 'silky albino fur' },
+        { qty: 2, name: 'dunkleosteus' },
+        { qty: 2, name: 'wooly rhino horn' },
+      ],
+    },
+    {
+      name: 'custom title',
+      difficulty: 'master',
+      requiredItems: [
+        { qty: 4, name: 'berries' },
+        { qty: 3, name: 'ammonite shell' },
+        { qty: 2, name: 'ancient metal rings' },
+        { qty: 2, name: 'mint' },
+        { qty: 1, name: 'chimeric pelt' },
+        { qty: 1, name: 'moonsteel bar' },
+      ],
+    },
+    {
+      name: 'headdress of the stars',
+      difficulty: 'master',
+      requiredItems: [
+        { qty: 5, name: 'quetzal feathers' },
+        { qty: 4, name: 'golden coin' },
+        { qty: 3, name: 'chunk of obsidian' },
+        { qty: 2, name: 'headdress amulet' },
+      ],
+    },
+  ];
+
+  getAllCrafts(): Crafts[] {
+    return this._crafts;
+  }
+
+  getCraftables(requiredItems: Ingredients[]): Crafts[] {
+    return this._crafts.filter((crafts) => {
+      let allItemsPresent = crafts.requiredItems.every((requiredItem) => {
+        let matchingItem = requiredItems.find(
+          (playerItem) =>
+            playerItem.name.toLowerCase() === requiredItem.name.toLowerCase()
+        );
+
+        return matchingItem && matchingItem.qty >= requiredItem.qty;
+      });
+
+      return allItemsPresent;
+    });
+  }
+
+  getCraftsByLevel(level: string): Crafts[] {
+    return this._crafts.filter((crafts) => crafts.difficulty === level);
+  }
 
   getAllMilestones(): Milestones[] {
     return this._milestones;

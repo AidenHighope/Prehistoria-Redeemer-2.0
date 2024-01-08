@@ -4,7 +4,6 @@ export interface Crafts {
   name: string;
   difficulty: string;
   requiredItems: Ingredients[];
-  craftable: boolean;
 }
 
 export interface Milestones {

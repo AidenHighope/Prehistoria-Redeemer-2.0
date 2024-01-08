@@ -27,7 +27,7 @@
     </div>
   </div>
 
-  <form class="form-inline">
+  <form class="form-inline" id="milestones">
     <button
       class="btn btn-dark"
       type="button"
@@ -68,6 +68,36 @@
       event
     </button>
   </form>
+  <form class="form-inline" id="crafts">
+    <button
+      class="btn btn-dark"
+      type="button"
+      (click)="filterByLevel('beginner')"
+    >
+      Beginner
+    </button>
+    <button
+      class="btn btn-dark"
+      type="button"
+      (click)="filterByLevel('apprentice')"
+    >
+      Apprentice
+    </button>
+    <button
+      class="btn btn-dark"
+      type="button"
+      (click)="filterByLevel('expert')"
+    >
+      Expert
+    </button>
+    <button
+      class="btn btn-dark"
+      type="button"
+      (click)="filterByLevel('master')"
+    >
+      Master
+    </button>
+  </form>
 </nav>
 
 <section class="flexy">
@@ -84,16 +114,17 @@
         titles) and click the button!<br />
         if you suspect an item hasn't been recognized, try changing it from
         singular to plural or the other way around! You can also click the
-        button to have a list of the different milestones and check manually
+        button to have a list of the different milestones/crafts and check
+        manually
       </p>
-      <h3>only milestones are currently implemented.</h3>
       <p>
         🚨🚨 the items are only recognized if the spelling matches EXACTLY what
         I encoded. <br />
         In the bank a same item in one player stash will be singular and plural
         in another player's.<br />
         That means I can't ensure this tool will work perfectly due to the high
-        chance of human error.🚨🚨
+        chance of human error. Please remember this is a fan tool and is not
+        official, admins are not responsible for any oopsies happening🚨🚨
       </p>
     </div>
   </article>
@@ -108,9 +139,12 @@
       cols="30"
       rows="10"
     ></textarea>
-    <button (click)="processItems(playerInput)">what can I make?</button>
+    <button class="btn btn-danger" (click)="generateAll(playerInput)">
+      what can I make?
+    </button>
   </article>
   <article class="Mybox">
+    <h2>Milestones</h2>
     <ul *ngFor="let milestone of craftableMilestones">
       <li>
         <h3>
@@ -125,6 +159,17 @@
       </li>
       <li *ngIf="milestone.reward !== undefined">
         <b>Reward:</b> {{ milestone.reward?.item }}
+      </li>
+    </ul>
+  </article>
+  <article class="Mybox">
+    <h2>Crafting</h2>
+    <ul *ngFor="let craft of craftableCrafts">
+      <li>
+        <h3>{{ craft.name | titlecase }} - {{ craft.difficulty }}</h3>
+      </li>
+      <li *ngFor="let item of craft.requiredItems">
+        {{ item.qty }}x {{ item.name }}
       </li>
     </ul>
   </article>
