@@ -12,5 +12,6 @@ export class NavbarComponent {
     { title: 'item redeemer', url: '/Item-grp' },
     { title: 'activity form generator', url: '/tack-gen' },
     { title: 'Milestones & crafts', url: '/milestone' },
+    { title: 'breeding sim', url: '/breeding' },
   ];
 }

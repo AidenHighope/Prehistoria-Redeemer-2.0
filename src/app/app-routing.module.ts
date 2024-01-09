@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { ItemsComponent } from './Item-grp/items/items.component';
 import { TackGenComponent } from './tack-gen/tack-gen.component';
 import { MilestoneComponent } from './milestone/milestone.component';
+import { BreedingComponent } from './breeding/breeding.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'tack-gen', component: TackGenComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'milestone', component: MilestoneComponent },
+  { path: 'breeding', component: BreedingComponent },
 ];
 
 @NgModule({

@@ -1,0 +1,33 @@
+<section class="flexy">
+  <article class="Mybox">
+    <h3>Sire</h3>
+    <textarea
+      name="sire"
+      id=""
+      cols="30"
+      rows="10"
+      [(ngModel)]="sireInput"
+    ></textarea>
+    <button (click)="rollBreeding(sireInput, damInput)">testing area</button>
+    <h3>Dam</h3>
+    <textarea
+      name="dam"
+      id=""
+      cols="30"
+      rows="10"
+      [(ngModel)]="damInput"
+    ></textarea>
+  </article>
+  <article class="Mybox">
+    <h3>Offspring :</h3>
+    <ul *ngFor="let pups of offspring">
+      <li>
+        {{ pups.baseCoat.name }} with
+        <span *ngFor="let marking of pups.markings">{{ marking.name }},</span>
+      </li>
+      <li><b>Mane Type:</b> {{ pups.mane }}</li>
+      <li><b>Tail Type:</b> {{ pups.tail }}</li>
+      <li><b>Mutation:</b> {{ pups.mutation }}</li>
+    </ul>
+  </article>
+</section>

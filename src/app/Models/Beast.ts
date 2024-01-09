@@ -11,7 +11,7 @@ export interface beast {
 }
 
 export interface Geno {
-  baseCoat: string;
+  baseCoat: Coat;
   markings: Markings[];
   mane: string[];
   tail: string;
@@ -21,6 +21,12 @@ export interface Geno {
 export interface Markings {
   name: string;
   rarity: string;
+}
+
+export interface Coat {
+  name: string;
+  key: string;
+  isSpecial: boolean;
 }
 
 export interface Lineage {

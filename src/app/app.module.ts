@@ -10,6 +10,7 @@ import { TackGenComponent } from './tack-gen/tack-gen.component';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { MilestoneComponent } from './milestone/milestone.component';
+import { BreedingComponent } from './breeding/breeding.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { MilestoneComponent } from './milestone/milestone.component';
     HomeComponent,
     NavbarComponent,
     MilestoneComponent,
+    BreedingComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, NgbModule, FormsModule],
   providers: [],
