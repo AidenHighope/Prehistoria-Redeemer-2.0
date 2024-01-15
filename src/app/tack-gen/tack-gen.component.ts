@@ -273,5 +273,11 @@ export class TackGenComponent {
   orderTack(list: tack[]): void {
     this.tackService.sortByType(list);
   }
+
+  searchByName(input: string): tack[] {
+    this.displayedItems = this.tackService.getByName(input);
+    this.searchItem = '';
+    return this.displayedItems;
+  }
   //#endregion
 }

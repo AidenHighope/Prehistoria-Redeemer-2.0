@@ -29,7 +29,17 @@
     </button>
   </form>
 </nav>
-
+<article class="search-bar">
+  <input
+    type="text"
+    placeholder="search"
+    [(ngModel)]="searchItem"
+    (keyup.enter)="searchByName(searchItem)"
+  />
+  <button class="btn btn-danger" (click)="searchByName(searchItem)">
+    search
+  </button>
+</article>
 <section class="flexy">
   <article class="Mybox">
     <table class="option-bar">

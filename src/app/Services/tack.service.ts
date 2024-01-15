@@ -177,6 +177,12 @@ export class TackService {
     return this._tackdb;
   }
 
+  getByName(input: string): tack[] {
+    return this._tackdb.filter((i) =>
+      i.name.toLowerCase().includes(input.toLowerCase())
+    );
+  }
+
   getByType(name: string): tack[] {
     return this._tackdb.filter((i) => i.type.includes(name));
   }
