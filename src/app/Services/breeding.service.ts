@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Coat, Geno, Lineage, Markings } from '../Models/Beast';
+import { Coat, Geno, Lineage, Markings, Mutation } from '../Models/Beast';
 
 @Injectable({
   providedIn: 'root',
@@ -76,6 +76,12 @@ export class BreedingService {
     { name: 'suntouched fawn', key: 'fawn', isSpecial: true },
     { name: 'ochre', key: 'ochre', isSpecial: false },
     { name: 'dawn ochre', key: 'ochre', isSpecial: true },
+  ];
+
+  private _mutations: Mutation[] = [
+    { name: 'beach morning', type: 'color', stackable: false },
+    { name: 'melanism', type: 'color', stackable: false },
+    { name: 'moonblessed', type: 'color', stackable: true },
   ];
 
   parseGeno(input: string): Geno | null {

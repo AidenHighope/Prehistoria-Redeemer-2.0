@@ -29,6 +29,12 @@ export interface Coat {
   isSpecial: boolean;
 }
 
+export interface Mutation {
+  name: string;
+  type: string;
+  stackable: boolean;
+}
+
 export interface Lineage {
   sire: string;
   dam: string;

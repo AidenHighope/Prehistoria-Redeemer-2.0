@@ -8,7 +8,9 @@
       rows="10"
       [(ngModel)]="sireInput"
     ></textarea>
-    <button (click)="rollBreeding(sireInput, damInput)">testing area</button>
+    <button class="btn btn-danger" (click)="rollBreeding(sireInput, damInput)">
+      testing area
+    </button>
     <h3>Dam</h3>
     <textarea
       name="dam"
@@ -22,8 +24,10 @@
     <h3>Offspring :</h3>
     <ul *ngFor="let pups of offspring">
       <li>
-        {{ pups.baseCoat.name }} with
-        <span *ngFor="let marking of pups.markings">{{ marking.name }},</span>
+        {{ pups.baseCoat.name | titlecase }} with
+        <span *ngFor="let marking of pups.markings"
+          >{{ marking.name | titlecase }},
+        </span>
       </li>
       <li><b>Mane Type:</b> {{ pups.mane }}</li>
       <li><b>Tail Type:</b> {{ pups.tail }}</li>
