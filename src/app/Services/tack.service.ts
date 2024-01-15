@@ -17,6 +17,7 @@ export class TackService {
     { name: 'Megalania', type: 'companions', activity: 'hunting' },
     { name: 'Daeodon', type: 'companions', activity: 'hunting' },
     { name: 'Gorgonops', type: 'companions', activity: 'hunting' },
+    { name: 'Moose', type: 'companions', activity: 'any' },
 
     { name: 'Trilobite (normal)', type: 'companions', activity: 'fishing' },
 
