@@ -15,7 +15,7 @@ export interface Geno {
   markings: Markings[];
   mane: string[];
   tail: string;
-  mutation: string;
+  mutation: Mutation[];
 }
 
 export interface Markings {

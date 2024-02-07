@@ -31,7 +31,12 @@
       </li>
       <li><b>Mane Type:</b> {{ pups.mane }}</li>
       <li><b>Tail Type:</b> {{ pups.tail }}</li>
-      <li><b>Mutation:</b> {{ pups.mutation }}</li>
+      <li>
+        <b>Mutation:</b>
+        <span *ngFor="let mut of pups.mutation">
+          {{ mut.name | titlecase }},
+        </span>
+      </li>
     </ul>
   </article>
 </section>

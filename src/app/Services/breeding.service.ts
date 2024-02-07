@@ -82,9 +82,93 @@ export class BreedingService {
     { name: 'beach morning', type: 'color', stackable: false },
     { name: 'melanism', type: 'color', stackable: false },
     { name: 'moonblessed', type: 'color', stackable: true },
+    { name: 'albino', type: 'color', stackable: false },
+    { name: 'maltese', type: 'color', stackable: false },
+    { name: 'cross', type: 'color', stackable: true },
+    { name: 'dhole', type: 'color', stackable: false },
+    { name: 'cremello', type: 'color', stackable: false },
+    { name: 'ice', type: 'color', stackable: false },
+    { name: 'tropical', type: 'color', stackable: false },
+    { name: 'terracotta', type: 'color', stackable: false },
+    { name: 'chimera', type: 'marking', stackable: true },
+    { name: 'vitiligo', type: 'marking', stackable: true },
+    { name: 'king cheetah', type: 'marking', stackable: true },
+    { name: 'african wild dog', type: 'marking', stackable: true },
+    { name: 'brindle', type: 'marking', stackable: true },
+    { name: 'marbled', type: 'marking', stackable: true },
+    { name: 'somatic', type: 'marking', stackable: true },
+    { name: 'panda', type: 'marking', stackable: true },
   ];
-
   parseGeno(input: string): Geno | null {
+    let GenoPattern =
+      /Phenotype:\s(\w+)(?:\swith\s([\w\s,]+(?:\s?and\s[\w\s,]+(?:\s?and\s[\w\s,]+)*)?)?)?[\n\r]+Mane Type:\s([\w\s]+)[\n\r]+Tail Type:\s([\w\s]+)[\n\r]+Mutations:\s([\w\s-]+)/i;
+
+    let replaceAnd = input.replace(/\sand\s/g, ', ').toLowerCase();
+    let match = replaceAnd.match(GenoPattern);
+
+    if (!match) {
+      console.log('bad geno input');
+      return null;
+    }
+
+    let [, baseCoat, markingsList, maneList, tailType, mutationsList] = match;
+
+    let validCoat = this._baseCoatDb.find((validCoat) => {
+      let trimmedCoat = validCoat.name.trim().toLowerCase();
+      return trimmedCoat === baseCoat.trim().toLowerCase();
+    });
+
+    if (!validCoat) {
+      console.log('Invalid base coat');
+      return null;
+    }
+    let markings: Markings[] = markingsList
+      ? markingsList.split(',').map((marking) => {
+          let trimmedMarking = marking.trim().toLowerCase();
+
+          let dbMarking = this._markingsDB.find(
+            (dbMarking) => dbMarking.name === trimmedMarking
+          );
+
+          if (dbMarking) {
+            return { name: trimmedMarking, rarity: dbMarking.rarity };
+          } else {
+            return { name: trimmedMarking, rarity: 'unknown' };
+          }
+        })
+      : [];
+
+    let mutations: Mutation[] = mutationsList
+      ? mutationsList.split(',').map((mut) => {
+          let trimmedMut = mut.trim().toLowerCase();
+          let dbMut = this._mutations.find(
+            (dbMut) => dbMut.name === trimmedMut
+          );
+
+          if (dbMut) {
+            return {
+              name: trimmedMut,
+              type: dbMut.type,
+              stackable: dbMut.stackable,
+            };
+          } else {
+            return { name: 'none', type: 'none', stackable: false };
+          }
+        })
+      : [];
+
+    let geno: Geno = {
+      baseCoat: validCoat!,
+      markings: markings,
+      mane: [maneList.trim()],
+      tail: tailType.trim(),
+      mutation: mutations,
+    };
+    return geno;
+  }
+  //#region parse Geno that works
+  /*  
+parseGeno(input: string): Geno | null {
     let GenoPattern =
       /Phenotype:\s(\w+)(?:\swith\s([\w\s,]+(?:\s?and\s[\w\s,]+(?:\s?and\s[\w\s,]+)*)?)?)?[\n\r]+Mane Type:\s([\w\s]+)[\n\r]+Tail Type:\s([\w\s]+)[\n\r]+Mutations:\s([\w\s-]+)/i;
 
@@ -98,7 +182,6 @@ export class BreedingService {
 
     let [, baseCoat, markingsList, mane, tail] = match;
 
-    //TODO fix basecoat logic to handle special basecoat input
     let validCoat = this._baseCoatDb.find((validCoat) => {
       let trimmedCoat = validCoat.name.trim().toLowerCase();
       return trimmedCoat === baseCoat.trim().toLowerCase();
@@ -133,7 +216,8 @@ export class BreedingService {
     };
     return geno;
   }
-
+*/
+  //#endregion
   getAllBaseCoat(): Coat[] {
     return this._baseCoatDb;
   }
@@ -177,6 +261,7 @@ export class BreedingService {
   rollOffsprint(sire: Geno, dam: Geno): Geno {
     let childGeno: Geno;
     let passedMarkings: Markings[];
+    let passedMutations: Mutation[] = this.rollMutations(sire, dam);
     let baseCoat = this.rollBaseCoat(sire, dam);
     passedMarkings = this.rollMarkings(sire, dam);
     return (childGeno = {
@@ -184,7 +269,7 @@ export class BreedingService {
       markings: passedMarkings,
       mane: ['standard'],
       tail: 'standard',
-      mutation: 'none',
+      mutation: passedMutations,
     });
   }
 
@@ -258,24 +343,60 @@ export class BreedingService {
 
     return passedMarkings;
   }
+  rollMutations(sire: Geno, dam: Geno): Mutation[] {
+    let passedMut: Mutation[] = [];
+    let existingMut = new Set<string>();
+    let addMut = (mut: Mutation) => {
+      let mutKey = mut.name.toLowerCase();
+      if (!existingMut.has(mutKey)) {
+        existingMut.add(mutKey);
+        passedMut.push(mut);
+      }
+    };
+    for (let mut of sire.mutation) {
+      let roll = this.rollDice('exotic');
+      if (roll >= 12) {
+        addMut(mut);
+      }
+    }
 
-  //#region old
-  // rollMarkings(sire: Geno, dam: Geno): Markings[] {
-  //   let passedMarkings: Markings[] = [];
-  //   let existingMarkings //how to handle the logic
-  //   for (let genes of sire.markings) {
-  //     let roll = this.rollDice(genes.rarity);
-  //     if (roll >= 12) {
-  //       passedMarkings.push(genes);
-  //     }
-  //   }
-  //   for (let genes of dam.markings) {
-  //     let roll = this.rollDice(genes.rarity);
-  //     if (roll >= 12) {
-  //       passedMarkings.push(genes);
-  //     }
-  //   }
-  //   return passedMarkings;
-  // }
+    for (let mut of dam.mutation) {
+      let roll = this.rollDice('exotic');
+      if (roll >= 12) {
+        addMut(mut);
+      }
+    }
+
+    return passedMut;
+  }
+  //#region WorkingRollMutation
+  /*
+  rollMutations(sire: Geno, dam: Geno): Mutation[] {
+    let passedMut: Mutation[] = [];
+    let existingMut = new Set<string>();
+
+    let addMut = (mut: Mutation) => {
+      let mutKey = mut.name.toLowerCase();
+      if (!existingMut.has(mutKey)) {
+        existingMut.add(mutKey);
+        passedMut.push(mut);
+      }
+    };
+    for (let mut of sire.mutation) {
+      let roll = this.rollDice('exotic');
+      if (roll >= 12) {
+        addMut(mut);
+      }
+    }
+
+    for (let mut of dam.mutation) {
+      let roll = this.rollDice('exotic');
+      if (roll >= 12) {
+        addMut(mut);
+      }
+    }
+    return passedMut;
+  }
+  */
   //#endregion
 }
