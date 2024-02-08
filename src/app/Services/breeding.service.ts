@@ -98,10 +98,17 @@ export class BreedingService {
     { name: 'marbled', type: 'marking', stackable: true },
     { name: 'somatic', type: 'marking', stackable: true },
     { name: 'panda', type: 'marking', stackable: true },
+    { name: 'fangs', type: 'misc', stackable: true },
+    { name: 'goldkissed', type: 'coat', stackable: false },
+    { name: 'metal', type: 'marking', stackable: true },
+    { name: 'cumulus', type: 'marking', stackable: true },
+    { name: 'typhoon', type: 'marking', stackable: true },
+    { name: 'runehide', type: 'marking', stackable: true },
+    { name: "larkka's touch", type: 'marking', stackable: true },
   ];
   parseGeno(input: string): Geno | null {
     let GenoPattern =
-      /Phenotype:\s(\w+)(?:\swith\s([\w\s,]+(?:\s?and\s[\w\s,]+(?:\s?and\s[\w\s,]+)*)?)?)?[\n\r]+Mane Type:\s([\w\s]+)[\n\r]+Tail Type:\s([\w\s]+)[\n\r]+Mutations:\s([\w\s-]+)/i;
+      /Phenotype:\s(\w+)(?:\swith\s([\w\s,]+(?:\s?and\s[\w\s,]+(?:\s?and\s[\w\s,]+)*)?)?)?[\n\r]+Mane Type:\s([\w\s]+)[\n\r]+Tail Type:\s([\w\s]+)[\n\r]+Mutations:\s([\w\s,-]+)/i;
 
     let replaceAnd = input.replace(/\sand\s/g, ', ').toLowerCase();
     let match = replaceAnd.match(GenoPattern);
@@ -164,6 +171,10 @@ export class BreedingService {
       tail: tailType.trim(),
       mutation: mutations,
     };
+
+    for (let mut of geno.mutation) {
+      console.log(mut.name + ' ' + mut.type);
+    }
     return geno;
   }
   //#region parse Geno that works
@@ -261,9 +272,10 @@ parseGeno(input: string): Geno | null {
   rollOffsprint(sire: Geno, dam: Geno): Geno {
     let childGeno: Geno;
     let passedMarkings: Markings[];
-    let passedMutations: Mutation[] = this.rollMutations(sire, dam);
+    let passedMutations: Mutation[];
     let baseCoat = this.rollBaseCoat(sire, dam);
     passedMarkings = this.rollMarkings(sire, dam);
+    passedMutations = this.rollMutations(sire, dam);
     return (childGeno = {
       baseCoat: baseCoat,
       markings: passedMarkings,
@@ -343,16 +355,32 @@ parseGeno(input: string): Geno | null {
 
     return passedMarkings;
   }
+
   rollMutations(sire: Geno, dam: Geno): Mutation[] {
     let passedMut: Mutation[] = [];
     let existingMut = new Set<string>();
+    let existingType = new Set<string>();
     let addMut = (mut: Mutation) => {
       let mutKey = mut.name.toLowerCase();
+      let typeKey = mut.type.toLowerCase();
+
       if (!existingMut.has(mutKey)) {
         existingMut.add(mutKey);
-        passedMut.push(mut);
+
+        if (!existingType.has(typeKey)) {
+          existingType.add(typeKey);
+          passedMut.push(mut);
+        } else if (mut.stackable) {
+          let existingTypeArray = Array.from(existingType);
+          let otherTypes = existingTypeArray.filter((t) => t !== typeKey);
+
+          if (otherTypes.length > 0) {
+            passedMut.push(mut);
+          }
+        }
       }
     };
+
     for (let mut of sire.mutation) {
       let roll = this.rollDice('exotic');
       if (roll >= 12) {
@@ -369,34 +397,4 @@ parseGeno(input: string): Geno | null {
 
     return passedMut;
   }
-  //#region WorkingRollMutation
-  /*
-  rollMutations(sire: Geno, dam: Geno): Mutation[] {
-    let passedMut: Mutation[] = [];
-    let existingMut = new Set<string>();
-
-    let addMut = (mut: Mutation) => {
-      let mutKey = mut.name.toLowerCase();
-      if (!existingMut.has(mutKey)) {
-        existingMut.add(mutKey);
-        passedMut.push(mut);
-      }
-    };
-    for (let mut of sire.mutation) {
-      let roll = this.rollDice('exotic');
-      if (roll >= 12) {
-        addMut(mut);
-      }
-    }
-
-    for (let mut of dam.mutation) {
-      let roll = this.rollDice('exotic');
-      if (roll >= 12) {
-        addMut(mut);
-      }
-    }
-    return passedMut;
-  }
-  */
-  //#endregion
 }
