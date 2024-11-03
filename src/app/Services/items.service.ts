@@ -408,7 +408,7 @@ export class ItemsService {
       redeemType: 'activities',
     },
     {
-      name: 'sarcosuchus tooth',
+      name: 'sarchosuchus tooth',
       category: 'telt',
       price: 600,
       redeemType: 'activities',
