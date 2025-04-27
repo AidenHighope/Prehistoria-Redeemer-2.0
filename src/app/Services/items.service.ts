@@ -1423,6 +1423,12 @@ export class ItemsService {
       price: 0,
       redeemType: 'equip',
     },
+    {
+      name: 'Golden Hen',
+      category: 'companions',
+      price: 0,
+      redeemType: 'equip',
+    },
     { name: 'stardust', category: 'event', price: 100, redeemType: 'currency' },
     {
       name: 'moonstone',
@@ -2037,6 +2043,12 @@ export class ItemsService {
       redeemType: 'breedingGeno',
     },
     {
+      name: 'Tree of Life Sapling',
+      category: 'breeding',
+      price: 0,
+      redeemType: 'breedingGeno',
+    },
+    {
       name: "imdir''s horn",
       category: 'breeding',
       price: 0,
@@ -2116,6 +2128,18 @@ export class ItemsService {
     },
     {
       name: 'golden charm of altering',
+      category: 'geno',
+      price: 0,
+      redeemType: 'breedingGeno',
+    },
+    {
+      name: 'Coat Downgrader',
+      category: 'geno',
+      price: 0,
+      redeemType: 'breedingGeno',
+    },
+    {
+      name: 'Coat Upgrader',
       category: 'geno',
       price: 0,
       redeemType: 'breedingGeno',
@@ -2253,6 +2277,18 @@ export class ItemsService {
     },
     {
       name: "ra''d''s frenzy trait stone",
+      category: 'trait',
+      price: 0,
+      redeemType: 'equip',
+    },
+    {
+      name: "rain''s Bounty",
+      category: 'trait',
+      price: 0,
+      redeemType: 'equip',
+    },
+    {
+      name: 'Finders Keepers',
       category: 'trait',
       price: 0,
       redeemType: 'equip',
