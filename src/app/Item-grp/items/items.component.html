@@ -259,13 +259,13 @@
     <p>---</p>
     <p><b>Total beads :</b> {{ TotalBeads() | number : "1.0-0" }} beads</p>
     <p><b>Total stashed items :</b></p>
-    <ul *ngFor="let column of bankColumnTitle">
+    <div *ngFor="let column of bankColumnTitle">
       <ng-container *ngFor="let item of processedItems()">
-        <li *ngIf="item.isStashed && item.itemType.redeemType === column">
-          {{ item.qty }} x {{ item.itemType.name | titlecase }}
-        </li>
+        <p *ngIf="item.isStashed && item.itemType.redeemType === column">
+          +{{ item.qty }} x {{ item.itemType.name | titlecase }}
+        </p>
       </ng-container>
       <br />
-    </ul>
+    </div>
   </article>
 </section>

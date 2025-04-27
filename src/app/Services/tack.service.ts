@@ -141,7 +141,7 @@ export class TackService {
       activity: 'discovery',
     },
     { name: "rain's bounty", type: 'trait', activity: 'fishing' },
-
+    { name: 'Finders Keepers', type: 'trait', activity: 'any' },
     { name: 'plains prowler', type: 'primal_trait', activity: 'hunting' },
     { name: 'aquatic affinity', type: 'primal_trait', activity: 'fishing' },
     { name: 'natural navigator', type: 'primal_trait', activity: 'discovery' },
